@@ -45,7 +45,8 @@ app.post('/submit.json', function(req, res) {
 		db.collection("lobbies", function(er, collection) {
 			var user = (req.body.user);
 			collection.insert({"user": user});	
-			res.send(200);
+			//res.send(200);
 		})
+	res.send(200);
 	});
 });
