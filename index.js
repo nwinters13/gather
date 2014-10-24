@@ -9,7 +9,7 @@ app.get('/', function(request, response) {
 })
 
 app.get('/index.html', function(req, res) {
-  response.send(200);
+  res.send(200);
 })
 
 app.listen(app.get('port'), function() {
