@@ -57,7 +57,7 @@ window.fbAsyncInit = function() {
         db_request.send("user=" + response.id);
         db_request.onreadystatechange = function() {
           if (db_request.readyState == 4 && db_request.status == 200) {
-            window.location = "mainpage.html";
+            window.location = "account.html";
           }
         }
         });
