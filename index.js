@@ -63,7 +63,7 @@ app.post('/invitePerson', function(req, res) {
 						collection.insert({"user": name}, function (err, r){
 							res.send(r[0].user);
 						});
-						
+						res.send(200);
 					} else {
 						var invites = r[0].invited;
 						invites.push(req.body.eventID);
