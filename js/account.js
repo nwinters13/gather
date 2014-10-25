@@ -70,7 +70,7 @@ function sendPOST(myLat, myLng, id, form) {
 	request.send(null);
 	var myGatherings = new Array();
 	myGatherings = request.responseText;
-	console.log(myGatherings);
+	console.log(request.responseText);
 	console.log(myGatherings.length);
 	if(myGatherings.length == 1) {
 		myEvents[0].innerHTML = form;
