@@ -13,10 +13,9 @@ app.use(express.static(__dirname + '/public'))
 
 
 
-var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/heroku_app30983226';
+//var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/heroku_app30983226';
 //mongoose.connect(mongoURI);
 //var db = mongoose.connection;
-//var lobbyDB = mongo.db(lobbyURI);
 
 
  //var newGoose = require('mongoose');
