@@ -260,12 +260,12 @@ app.post('/createEvent', function (req, res) {
 				res.send(400);
 			}
 			else {
-				 var eventID = req.body.eventID;
-				 var creator = req.body.user;
-				 var accepted = new Array();
-				 accepted.push(creator);
-				// collection.insert({"gathering": eventID, "accepted": accepted});
-				 res.send(200);	
+				var eventID = req.body.eventID;
+				var creator = req.body.user;
+				var accepted = new Array();
+				accepted.push(creator);
+				collection.insert({"gathering": eventID, "accepted": accepted}, function (q, z){});
+				res.send(200);	
 			}
 			});
 		});
