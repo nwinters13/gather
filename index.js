@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var json = require('json');
 var express = require('express')
 var app = express();
+app.use(allowCrossDomain);
 var parser = require('body-parser');
 app.set('port', (process.env.PORT || 5000))
 
