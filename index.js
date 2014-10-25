@@ -38,8 +38,8 @@ app.get('/', function(request, response) {
 });
 
 app.get('/index.html', function(req, res) {
-  console.log(db);
-  res.send(200);
+  //console.log(db);
+  res.send(mongoURI);
 });
 
 app.listen(app.get('port'), function() {
