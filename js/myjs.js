@@ -1,93 +1,81 @@
 var map;
+var places;
+var myPlaces;
 function initialize() {
   var mapOptions = {
     zoom: 8,
-    center: new google.maps.LatLng(-34.397, 150.644)
+    center: new google.maps.LatLng(42.4055470, -71.1238240)
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
-    yelp();
+    setupMap();
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
 
+function setupMap()
+{
+	if (navigator.geolocation) { 
+				navigator.geolocation.getCurrentPosition(function(position) {
+					myLat = position.coords.latitude;
+					myLng = position.coords.longitude;
+				});
+				
+	}
+	var latlng = new google.maps.LatLng(myLat, myLng);
+	var request = {
+			location: latlng,
+			radius: '500',
+			types: ['food']
+			};
+	service = new google.maps.places.PlacesService(map);
+	service.search(request, callback);
+}
+// Taken from http://code.google.com/apis/maps/documentation/javascript/places.html
+function callback(results, status)
+{
+	if (status == google.maps.places.PlacesServiceStatus.OK) {
+		alert("Got places back!");
+		places = results;
+		console.log("testing status");
+		for (var i = 0; i < 6; i++) {
+			console.log(results[i]);
+			createMarker(results[i]);
+			console.log("created an marker");
 
-function yelp( ) { //and maybe a string address
-	console.log("function started");
-
-	var epiAddress;
-	var sRadius;
-	var request;
-	var consumKey = "qyE-UGFSSgidsbrLfV9PlQ";
-	var consumSec = "Ad52o40WbgvY4-Qynjf2OW0DsSY";
-	var tok = "paux-4QSmjAw_KSww288lMZGtg9T3qJW";
-	var tokSec= "uYLq_B_7FrkpELdynCRFV5-VeMk";
-
-	if (true) { //this converts a geolocation to an address thru gmaps
-		
-			console.log("conversion from geo to addres begun");
-		  //var geoInput = document.getElementById('latlng').value;
-		  //var latlngStr = input.split(',', 2);
-		  var geocoder;
-		  geocoder = new google.maps.Geocoder();
-		  var lat =inputLat;
-		  var lng = inputLng;
-		  var latlng = new google.maps.LatLng(lat, lng);
-		  geocoder.geocode({'latLng': latlng}, function(results, status) {
-		    if (status == google.maps.GeocoderStatus.OK) {
-		    	console.log("test1");
-		      if (results[1]) {
-		      	console.log("test2");
-		        epiAddress = results[1].formatted_address;
-		        console.log(results[1].formatted_address);
-		       
-		      } else {
-		        alert('No results found');
-		      }
-		    } else {
-		      alert('Geocoder failed due to: ' + status);
-		    }
-		  });
 		}
-
-
-	if (mode == "walking") { //set search radius in meters based on mode of transportation
-		sRadius = 800;
-		console.log("walking radius set");
 	}
-	if (mode == "driving") {
-		sRadius = 1600;
+	loadData();
+}
+function createMarker(place)
+{
+	var placeLoc = place.geometry.location;
+	var marker = new google.maps.Marker({
+		map: map,
+		position: place.geometry.location
+	});
+
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.close();
+		infowindow.setContent(place.name);
+		infowindow.open(map, this);
+	});
+				
+}
+
+
+function loadData() 
+{
+	myPlaces = document.getElementById("places").getElementsByClassName("list-group-item");
+	for(var i =0; i < 6; i++) {
+			myPlaces[i].innerHTML = places[i].name;
 	}
-	console.log(term);
-	console.log(epiAddress);
-	console.log(sRadius);
-	var milliseconds = (new Date).getTime(); 
-	 
+	var myFriends = document.getElementById("people").getElementsByClassName("list-group-item");
 
-var request = {
-					location: latlng,
-					radius: '500',
-					types: ['food']
-				};
-				service = new google.maps.places.PlacesService(map);
-				service.search(request, callback);
-			
-			
-			// Taken from http://code.google.com/apis/maps/documentation/javascript/places.html
-			function callback(results, status)
-			{
-				if (status == google.maps.places.PlacesServiceStatus.OK) {
-					//alert("Got places back!");
-					places = results;
-					for (var i = 0; i < results.length; i++) {
-						createMarker(results[i]);
-					}
-				}
-			}
-
-
-
-
+	for(var i =0; i < myFriends.length; i++) {
+		// do something with myFriends[
+	}
 
 }
+

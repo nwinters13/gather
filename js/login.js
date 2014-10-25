@@ -42,7 +42,22 @@
     FB.Event.subscribe('auth.login', login_event);
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-       //window.location = "mainpage.html";
+        FB.api('/me', function(response) {
+        console.log('Successful login for: ' + response.name);
+        document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+        if (response && !response.error) {
+          console.log(response.id);
+        }
+        var db_request = new XMLHttpRequest();
+        db_request.open('POST', "http://gatherup.herokuapp.com/login", true);
+        //set request header
+        db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //send the request with my geolocation information
+        db_request.send("user=" + response.id);
+        });
+       window.location = "mainpage.html";
+       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -71,24 +86,5 @@
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-         var user_request = new XMLHttpRequest();
-         var db_request = new XMLHttpRequest();
-         user_request.open('GET', "graph.facebook.com/{user-id}");
-         user_request.send(null);
-         user_request.onreadystatechange = function() {
-          if (request.readyState == 4 && request.status == 200) {
-            console.log(user_request.responseText);
-            db_request.open('POST', "gatherup.herokuapp.com/login", true);
-            //set request header
-            db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            //send the request with my geolocation information
-            db_request.send("user=" + user_request.responseText);
-          }
-          }
-         }
-    });
+    console.log("hi");
   }
