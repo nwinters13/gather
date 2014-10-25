@@ -9,7 +9,8 @@
   "dependencies": {
     "express": "^4.9.8",
     "json": "^9.0.1",
-    "mongodb": "^1.4.19"
+    "mongodb": "^1.4.19",
+    "mongoose": "^3.8.18"
   },
   "engines": {
     "node": "0.10.x"

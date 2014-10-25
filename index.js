@@ -2,7 +2,7 @@ var http = require('http');
 var path = require('path');
 
 var mongo = require('mongodb');
-//var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var json = require('json');
 var express = require('express')
 var app = express();
@@ -32,7 +32,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/index.html', function(req, res) {
-  res.send(lobbyURI);
+  res.send(200);
 });
 
 app.listen(app.get('port'), function() {
