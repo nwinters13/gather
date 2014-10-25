@@ -44,7 +44,7 @@ console.log(myLat);
 	request.open('POST', 'http://gatherup.herokuapp.com/createEvent', true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send("eventID=" + form + "&user=" + id);
-	myEvents = document.getElementById("events").getElementsByClassName("list-group-item");
+	var myEvents = document.getElementById("events").getElementsByClassName("list-group-item");
 	if(myEvents.length == 1) {
 		myEvents[0] = form;
 	}
