@@ -24,6 +24,7 @@ function setupMap()
 			};
 	service = new google.maps.places.PlacesService(map);
 	service.search(request, callback);
+	alert('setting up');
 }
 // Taken from http://code.google.com/apis/maps/documentation/javascript/places.html
 function callback(results, status)
@@ -60,6 +61,7 @@ function createMarker(place)
 
 function loadData() 
 {
+	alert('in load data');
 	myPlaces = document.getElementById("places").getElementsByClassName("list-group-item");
 	for(var i =0; i < 6; i++) {
 			myPlaces[i].innerHTML = places[i].name;
