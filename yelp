@@ -1,57 +1,77 @@
+<!DOCTYPE html>
 
-function yelp(string term, number inputLat, number inputLng, string mode) //and maybe a string address
+<html>
+	
+	<head>
+		<meta charset="utf-8">
+		<title> yelp</title>
+		 <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=API_KEY">
+    </script>
+		
+		
+	</head>
+</html>
+<body>
 
-var epiAddress;
-var sRadius;
+<script>
 
-if (address.length > 1) { //this converts a geolocation to an address thru gmaps
-	function codeLatLng() {
-	  var geoInput = document.getElementById('latlng').value;
-	  var latlngStr = input.split(',', 2);
-	  var lat =inputLat;
-	  var lng = inputLng;
-	  var latlng = new google.maps.LatLng(lat, lng);
-	  geocoder.geocode({'latLng': latlng}, function(results, status) {
-	    if (status == google.maps.GeocoderStatus.OK) {
-	      if (results[1]) {
-	        epiAddress = results[1].formatted_address;
+function yelp(string term, number inputLat, number inputLng, string mode) { //and maybe a string address
 
-	       
-	      } else {
-	        alert('No results found');
-	      }
-	    } else {
-	      alert('Geocoder failed due to: ' + status);
-	    }
-	  });
+	var epiAddress;
+	var sRadius;
+	if (address.length > 1) { //this converts a geolocation to an address thru gmaps
+		function codeLatLng() {
+		  var geoInput = document.getElementById('latlng').value;
+		  var latlngStr = input.split(',', 2);
+		  var lat =inputLat;
+		  var lng = inputLng;
+		  var latlng = new google.maps.LatLng(lat, lng);
+		  geocoder.geocode({'latLng': latlng}, function(results, status) {
+		    if (status == google.maps.GeocoderStatus.OK) {
+		      if (results[1]) {
+		        epiAddress = results[1].formatted_address;
+
+		       
+		      } else {
+		        alert('No results found');
+		      }
+		    } else {
+		      alert('Geocoder failed due to: ' + status);
+		    }
+		  });
+		}
+
 	}
 
+
+
+	if (mode == "walking") { //set search radius in meters based on mode of transportation
+		sRadius = 800;
+	}
+	if (mode == "driving") {
+		sRadius = 1600;
+	}
+
+	requestURL = "http://api.yelp.com/v2/search?term=" + term + "&location=" + epiAddress "&radius_filter" + sRadius;      // + "&cll=" + geolocation;
+
+
+	var request = new XMLHttpRequest();
+	        request.onreadystatechange = function() {
+	                if (request.readyState == 4 && request.status == 200) {
+	                        placeList = JSON.parse(request.responseText);
+	                    }
+	                }
+
+
+
+	request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.open("GET", requestURL, true);
+
+	console.log(xhr.responseText);
 }
 
-
-
-if (mode == "walking") { //set search radius in meters based on mode of transportation
-	sRadius = 800;
-}
-if (mode == "driving") {
-	sRadius = 1600;
-}
-
-requestURL = "http://api.yelp.com/v2/search?term=" + term + "&location=" + epiAddress "&radius_filter" + sRadius;      // + "&cll=" + geolocation;
-
-
-var request = new XMLHttpRequest();
-        request.onreadystatechange = function() {
-                if (request.readyState == 4 && request.status == 200) {
-                        placeList = JSON.parse(request.responseText);
-                    }
-                }
-
-
-
- request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
- request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
- xhr.open("GET", requestURL, true);
-
-console.log(xhr.responseText);
+</script>
+</body>
+</html>
