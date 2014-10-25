@@ -44,14 +44,51 @@ function statusChangeCallback(response) {
   }
 
 function inviteFriendsToGroup() {
-alert('inviting');
 //for friends that already use
 FB.api("/me/friends",
   function (response) {
     if (response && !response.error) {
       var container = document.getElementById('myModal');
     }
-  }
-);
-//for friends that do not
+    // Iterate through the array of friends object and create a checkbox for each one.
+    for(var i = 0; i < Math.min(response.data.length, 10); i++) {
+     var friendItem = document.createElement('div');
+     friendItem.id = 'friend_' + response.data[i].id;
+     friendItem.innerHTML = '<input type="checkbox" name="friends" value="'
+       + response.data[i].id
+       + '" />' + response.data[i].name;
+       myModal.appendChild(friendItem);
+     }
+     container.appendChild(myModal);
+
+     // Create a button to send the Request(s)
+     var sendButton = document.createElement('input');
+     sendButton.type = 'button';
+     sendButton.value = 'Send Request';
+     sendButton.onclick = sendRequest;
+     myModal.appendChild(sendButton);
+
+  });
 }
+
+function sendRequest() {
+   // Get the list of selected friends
+   var sendUIDs = '';
+   var myModal = document.getElementById('myModal');
+     for(var i = 0; i < myModal.friends.length; i++) {
+       if(myModal.friends[i].checked) {
+         sendUIDs += myModal.friends[i].value + ',';
+       }
+     }
+
+   // Use FB.ui to send the Request(s)
+   FB.ui({method: 'apprequests',
+     to: sendUIDs,
+     title: 'My Great Invite',
+     message: 'Check out this Awesome App!',
+   }, callback);
+ }
+
+ function callback(response) {
+   console.log(response);
+ }
