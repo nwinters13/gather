@@ -16,7 +16,7 @@
 
 var form = document.getElementsByClassName("form-control");
 var button = document.getElementsByClassName("input-group-btn");
-button.onClick = sendRequest();
+button.onclick = sendRequest();
 
 function sendRequest() {
 	var request = new XMLHttpRequest();
