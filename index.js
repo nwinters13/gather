@@ -56,6 +56,6 @@ app.post('/submit.json', function(req, res) {
 	 		res.send(req.body.user);
 	 	});
 	 })
-	//res.send(200);
+	res.send(200);
 	});
 
