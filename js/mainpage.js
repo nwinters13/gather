@@ -44,7 +44,6 @@ function statusChangeCallback(response) {
   }
 
 function inviteFriendsToGroup() {
-alert('inviting');
 //for friends that already use
 FB.api("/me/friends",
   function (response) {
