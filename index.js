@@ -89,7 +89,7 @@ app.post('/invitePerson', function(req, res) {
 					 				invites.push(eventID);
 					 			}
 					 		}
-				  		 	collection.update({"user": name}, {"user": name, "invited": invites}, function(e, q) {});
+				  		 	collection.update({"user": name}, {"user": name, "invited": invites, "accepted": r[0].accepted}, function(e, q) {});
 					 		res.send(202);
 					 	}
 					 }
@@ -134,7 +134,7 @@ app.post('/decline', function(req, res) {
 								invites.splice(j, 1);
 							}
 						}
-						collection.update({"user": name}, {"user": name, "invited": invites}, function(e, q) {});
+						collection.update({"user": name}, {"user": name, "invited": invites, "accepted": r[0].accepted}, function(e, q) {});
 						res.send(202);
 					}
 				}
