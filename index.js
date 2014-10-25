@@ -69,7 +69,10 @@ app.post('/invitePerson', function(req, res) {
 					 			invites.push(eventID);
 					 		}
 					 		else {
-					 			var accepted = r[0].accepted;
+					 			var accepted = new Array();
+					 			if (r[0].accepted != null) {
+					 				accepted = r[0].accepted;
+					 			}
 					 			invites = r[0].invited;
 					 			var needToAdd = true;
 					 			for (j = 0; j < accepted.length; j++) {
