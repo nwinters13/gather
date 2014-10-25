@@ -88,7 +88,6 @@
             //send the request with my geolocation information
             db_request.send("user=" + user_request.responseText);
           }
-          }
-         }
+        }
     });
   }
