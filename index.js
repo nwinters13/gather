@@ -284,23 +284,31 @@ app.post('/acceptEvent', function (req, res) {
 			}
 			else {
 				var eventID = req.body.eventID;
-				var creator = req.body.user;
-				var accepted = new Array();
-				if (eventList[0].accepted != null) {
-					accepted = eventList[0].accepted
+				var user = req.body.user;
+				var addUser = true;
+				for (j = 0; j < eventList[0].length; j++) {
+					if (eventList[0].accepted[j] == user) {
+						addUser = false;
+					}
 				}
-				var lats = new Array();
-				if (eventList[0].lats != null) {
-					lats = eventList[0].lats;
+				if (addUser) {
+					var accepted = new Array();
+					if (eventList[0].accepted != null) {
+						accepted = eventList[0].accepted
+					}
+					var lats = new Array();
+					if (eventList[0].lats != null) {
+						lats = eventList[0].lats;
+					}
+					var lngs = new Array();
+					if (eventList[0].lngs != null) {
+						lngs = eventList[0].lngs
+					}
+					accepted.push(user);
+					lats.push(req.body.lat);
+					lngs.push(req.body.lng);
+					collection.update({"gathering": eventID}, {"gathering": eventID, "accepted": accepted, "lats": lats, "lngs": lngs}, function (q, z){});
 				}
-				var lngs = new Array();
-				if (eventList[0].lngs != null) {
-					lngs = eventList[0].lngs
-				}
-				accepted.push(creator);
-				lats.push(req.body.lat);
-				lngs.push(req.body.lng);
-				collection.update({"gathering": eventID}, {"gathering": eventID, "accepted": accepted, "lats": lats, "lngs": lngs}, function (q, z){});
 				res.send(200);	
 			}
 			});
