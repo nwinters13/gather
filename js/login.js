@@ -60,6 +60,7 @@
         });
         if (window.location == "index.html") {
          window.location = "mainpage.html";
+         location.reload();
        }
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
