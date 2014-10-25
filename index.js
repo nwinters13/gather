@@ -19,9 +19,9 @@ var lobbyDB = mongoose.connection;
 //var lobbyDB = mongo.db(lobbyURI);
 
 
- var newGoose = require('mongoose');
- var userURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/users';
- newGoose.connect(userURI);
+ //var newGoose = require('mongoose');
+ //var userURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/users';
+ //newGoose.connect(userURI);
 // var userDB = newGoose.connection;
 // var userDB = mongo.Db.connect(userURI, function(err, dbConn) {
 // 	userDB = dbConn;
