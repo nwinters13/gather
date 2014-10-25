@@ -88,3 +88,16 @@
   function testAPI() {
     console.log("hi");
   }
+
+  function inviteFriendsToGroup() {
+    //for friends that already use
+    FB.api("/me/friends",
+      function (response) {
+        if (response && !response.error) {
+          var container = document.getElementById('myModal');
+        }
+      }
+    );
+    //for friends that do not
+
+  }
