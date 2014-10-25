@@ -168,7 +168,7 @@ app.post('/accept', function(req, res) {
 						if (r[0].accepted != null) {
 							accepted = r[0].accepted;
 						}
-						accepted.push(currEvent);
+						accepted.push(currEvent[0]);
 						collection.update({"user": name}, {"user": name, "invited": invites, "accepted": accepted}, function(e, q) {});
 						res.send(202);
 					}
