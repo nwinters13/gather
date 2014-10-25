@@ -15,6 +15,7 @@
 
 
 var form = document.getElementsByClassName("form-control");
+form = form.value;
 var button = document.getElementsByClassName("input-group-btn");
 
 function sendRequest() {
