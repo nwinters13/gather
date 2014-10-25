@@ -218,7 +218,7 @@ app.post('/acceptCreator', function(req, res) {
 				}
 				if (shouldInsert) {
 					events.push(req.body.eventID);
-					collection.update({"user": name}, {"user": name, "invited": r[0].invites, "accepted": events, "currentlyViewing": r[0].currentlyViewing}, function(e, q) {});
+					collection.update({"user": name}, {"user": name, "invited": r[0]invites, "accepted": events, "currentlyViewing": r[0].currentlyViewing}, function(e, q) {});
 				}
 				res.send(200);
 			});
@@ -250,7 +250,7 @@ app.get('/currentAccepted', function (req, res) {
 		db.collection("users", function (er, collection) {
 			var name = req.query.user;
 			var user = collection.find({user: name}).toArray(function (err, r) {
-				request.status(r[0].accepted.end();
+				res.send(r[0].accepted);
 			});
 		});
 	});
