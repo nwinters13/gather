@@ -206,6 +206,7 @@ app.post('/acceptCreator', function(req, res) {
 		db.collection ("users", function (er, collection) {
 			var name = req.body.user;
 			var user = collection.find({user: name}).toArray(function (err, r){
+				if(!err){
 				var shouldInsert = true;
 				var events = new Array();
 				if (r[0].accepted != null){
@@ -221,6 +222,7 @@ app.post('/acceptCreator', function(req, res) {
 					collection.update({"user": name}, {"user": name, "invited": r[0].invites, "accepted": events, "currentlyViewing": r[0].currentlyViewing}, function(e, q) {});
 				}
 				res.send(200);
+			}
 			});
 		});
 	});
