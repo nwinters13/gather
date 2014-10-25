@@ -1,4 +1,4 @@
-  window.fbAsyncInit = function() {
+window.fbAsyncInit = function() {
     FB.init({
       appId      : '661502127295972',
       xfbml      : true,
@@ -39,7 +39,7 @@
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
-    FB.Event.subscribe('auth.login', login_event);
+    FB.Event.subscribe('auth.login', function(){location.reload()});
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
         FB.api('/me', function(response) {
@@ -55,9 +55,12 @@
         db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         //send the request with my geolocation information
         db_request.send("user=" + response.id);
+        db_request.onreadystatechange = function() {
+          if (db_request.readyState == 4 && db_request.status == 200) {
+            window.location = "account.html";
+          }
+        }
         });
-       window.location = "mainpage.html";
-       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -70,21 +73,12 @@
     } 
   }
 
-  var login_event = function() {
-        location.reload();
-      };
-
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
+      console.log('done pressing')
       statusChangeCallback(response);
     });
-  }
-
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log("hi");
   }
