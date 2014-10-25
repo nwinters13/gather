@@ -58,16 +58,16 @@ app.post('/invitePerson', function(req, res) {
 			var name = req.body.user;
 
 			var user = collection.find({user: name}).toArray(function (err, r){
-					if (err) {
-						collection.insert({"user": name}, function (err, rz){
-							res.send(200);
-						});
-					} else {
-						var invites = r[0].invited;
-						invites.push(req.body.eventID);
-				 		collection.update({"user": r[0].user}, {"user": r[0].user, "invited": invites, "accepted": r[0].accepted});
-						res.send(202);
-					}
+					// if (err) {
+					// 	collection.insert({"user": name}, function (err, rz){
+					// 		res.send(200);
+					// 	});
+					// } else {
+					// 	var invites = r[0].invited;
+					// 	invites.push(req.body.eventID);
+				 // 		collection.update({"user": r[0].user}, {"user": r[0].user, "invited": invites, "accepted": r[0].accepted});
+					// 	res.send(202);
+					// }
 					res.send(204);
 			});
 		});
