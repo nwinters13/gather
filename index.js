@@ -131,7 +131,7 @@ app.post('/decline', function(req, res) {
 						invites = r[0].invited;
 						for (j = 0; j < invites.length; j++) {
 							if (invites[j] == eventID) {
-								invites = invites.splice(j, 1);
+								invites.splice(j, 1);
 							}
 						}
 						collection.update({"user": name}, {"user": name, "invited": invites}, function(e, q) {});
