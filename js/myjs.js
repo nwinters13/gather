@@ -1,6 +1,7 @@
 var map;
 var places;
 var myPlaces;
+var hasLoaded = false;
 function initialize() {
   var mapOptions = {
     zoom: 8,
@@ -15,11 +16,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 
 function loadScript() {
+ if (!hasLoaded) {
   var script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = 'https://maps.googleapis.com/maps/api/js?sensor=true&libraries=places&' +
       'callback=initialize';
   document.body.appendChild(script);
+  hasLoaded = true;
+ }
 }
 
 window.onload = loadScript();
