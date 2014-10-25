@@ -15,24 +15,7 @@ app.use(parser.json());
 
 
 var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/47950/heroku_app30983226';
-//mongoose.connect(mongoURI);
 var db = mongoose.createConnection(mongoURI);
-//var db = mongo.Db.connect(mongoURI, function (error, databaseConnection) {
-//	db = databaseConnection;
-//});
-
-
- //var newGoose = require('mongoose');
- //var userURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/users';
- //newGoose.connect(userURI);
-// var userDB = newGoose.connection;
-// var userDB = mongo.Db.connect(userURI, function(err, dbConn) {
-// 	userDB = dbConn;
-// });
-
-
-
-
 
 app.get('/', function(request, response) {
   response.send('Hello World!')
