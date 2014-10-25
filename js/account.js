@@ -33,6 +33,7 @@ console.log('hi');
 	}
 	if (navigator.geolocation) { 
 				navigator.geolocation.getCurrentPosition(function(position) {
+					console.log("hi!!!!");
 					myLat = position.coords.latitude;
 					myLng = position.coords.longitude;
 				});
