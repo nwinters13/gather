@@ -57,14 +57,15 @@ app.post('/invitePerson', function(req, res) {
 		db.collection ("users", function (er, collection) {
 			collection.find({}).sort().toArray(function (err, array) {			
 				var name = req.body.user;
-				var user = collection.find({user: name}).toArray(function (err, r){});
-				// if (!user) {git 
-				// 	collection.insert({"user": name}, function (err, r){});
-				// } else {
-				// 	var invites = user.invited;
-				// 	invites.push(req.body.eventID);
-				// 	collection.update({"user": name}, {"user": name, "invited": invites, "accepted": user.accepted});
-				// }
+				var user = collection.find({user: name}).toArray(function (err, r){
+					if (!user) {
+						collection.insert({"user": name}, function (err, r){});
+					} else {
+						var invites = user.invited;
+						invites.push(req.body.eventID);
+					 	collection.update({"user": name}, {"user": name, "invited": invites, "accepted": user.accepted});
+					}
+				});
 				res.send(200);
 			});
 		});
