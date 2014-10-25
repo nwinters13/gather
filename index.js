@@ -38,19 +38,6 @@ app.get('/index.html', function(req, res) {
    console.log("Node app is running at localhost:" + app.get('port'))
  });
 
-// app.post('/submit.json', function (req, res) {
-// 	 res.header("Access-Control-Allow-Origin", "*");
-// 	 res.header("Access-Control-Allow-Headers", "*");
-// 	 mongo.Db.connect(mongoURI, function(err, db) {
-// 	 	db.collection("lobbies", function(er, collection) {
-// 	 		var user = (req.body.user);
-// 	 		collection.insert({"user": user}, function (err, r){});	
-// 	 		res.send(req.body.user);
-// 	 	});
-// 	 });
-// 	res.send(200);
-// });
-
 
 app.post('/invitePerson', function(req, res) {
 	mongo.Db.connect(mongoURI, function (err, db) {
@@ -89,7 +76,7 @@ app.post('/invitePerson', function(req, res) {
 					 				invites.push(eventID);
 					 			}
 					 		}
-				  		 	collection.update({"user": name}, {"user": name, "invited": invites, "accepted": r[0].accepted}, function(e, q) {});
+				  		 	collection.update({"user": name}, {"user": name, "invited": invites, "accepted": r[0].accepted, "currentlyViewing": r[0].currentlyViewing}, function(e, q) {});
 					 		res.send(202);
 					 	}
 					 }
@@ -134,7 +121,7 @@ app.post('/decline', function(req, res) {
 								invites.splice(j, 1);
 							}
 						}
-						collection.update({"user": name}, {"user": name, "invited": invites, "accepted": r[0].accepted}, function(e, q) {});
+						collection.update({"user": name}, {"user": name, "invited": invites, "accepted": r[0].accepted, "currentlyViewing": r[0].currentlyViewing}, function(e, q) {});
 						res.send(202);
 					}
 				}
@@ -170,7 +157,7 @@ app.post('/accept', function(req, res) {
 						}
 						if (currEvent != null) {
 							accepted.push(currEvent[0]);
-							collection.update({"user": name}, {"user": name, "invited": invites, "accepted": accepted}, function(e, q) {});
+							collection.update({"user": name}, {"user": name, "invited": invites, "accepted": accepted, "currentlyViewing": r[0].currentlyViewing}, function(e, q) {});
 						}
 						res.send(202);
 					}
@@ -197,6 +184,24 @@ app.get('/currentAccepted', function (req, res) {
 			var name = req.query.user;
 			var user = collection.find({user: name}).toArray(function (err, r) {
 				res.send(r[0].accepted);
+			});
+		});
+	});
+});
+
+app.post('/viewingEvent', function (req, res) {
+	mongo.Db.connect(mongoURI, function (err, db) {
+		db.collection("users", function (er, collection) {
+			var name = req.body.user;
+			var user = collection.find({user: name}).toArray(function (err, r) {
+				var currentlyViewing;
+				var eventID = req.body.eventID;
+				for (j = 0; j < r[0].accepted.length; j++) {
+					if (eventID == r[0].accepted[j]) {
+						currentlyViewing = eventID;
+					}
+				}
+				collection.update({"user": name}, {"user": name, "invited": r[0].invited, "accepted": r[0].accepted, "currentlyViewing": r[0].currentlyViewing}, function(e, q) {});
 			});
 		});
 	});
