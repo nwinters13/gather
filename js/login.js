@@ -51,6 +51,10 @@
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
     }
+    FB.Event.subscribe('auth.login', function(response) {
+        alert("Logged in.. Redirecting you now...");
+        window.location = mainpage;
+    });
   }
 
   // This function is called when someone finishes with the Login
@@ -66,17 +70,6 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    $helper = new FacebookRedirectLoginHelper($mainpage);
-    try {
-      $session = $helper->getSessionFromRedirect();
-    } catch(FacebookRequestException $ex) {
-    // When Facebook returns an error
-    } catch(\Exception $ex) {
-    // When validation fails or other local issues
-    }
-    if ($session) {
-    // Logged in.
-    }
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
