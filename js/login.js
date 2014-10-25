@@ -51,10 +51,6 @@
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
     }
-    FB.Event.subscribe('auth.login', function(response) {
-        alert("Logged in.. Redirecting you now...");
-        window.location = mainpage;
-    });
   }
 
   // This function is called when someone finishes with the Login
