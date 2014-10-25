@@ -289,8 +289,18 @@ app.post('/acceptEvent', function (req, res) {
 				if (eventList[0].accepted != null) {
 					accepted = eventList[0].accepted
 				}
+				var lats = new Array();
+				if (eventList[0].lats != null) {
+					lats = eventList[0].lats;
+				}
+				var lngs = new Array();
+				if (eventList[0].lngs != null) {
+					lngs = eventList[0].lngs
+				}
 				accepted.push(creator);
-				collection.update({"gathering": eventID}, {"gathering": eventID, "accepted": accepted}, function (q, z){});
+				lats.push(req.body.lat);
+				lngs.push(req.body.lng);
+				collection.update({"gathering": eventID}, {"gathering": eventID, "accepted": accepted, "lats": lats, "lngs": lngs}, function (q, z){});
 				res.send(200);	
 			}
 			});
