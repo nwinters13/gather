@@ -12,6 +12,15 @@
         });
 
       };
+var id;
+
+function statusChangeCallback(response) {
+		FB.api('/me', function(response) {
+			if (response && !response.error) {
+		          		id = response.id;
+		        }
+		});
+	}
 
 
 function sendRequest() {
@@ -19,18 +28,10 @@ function sendRequest() {
 	form = form.value;
 	var button = document.getElementsByClassName("input-group-btn");
 	console.log(form);
-	var id;
 	var myLat;
 	var myLng;
 console.log('hi');
-	function statusChangeCallback(response) {
-		FB.api('/me', function(response) {
-			if (response && !response.error) {
-		          		id = response.id;
-		        }
-		});
-	}
-	if (navigator.geolocation) { 
+		if (navigator.geolocation) { 
 				navigator.geolocation.getCurrentPosition(function(position) {
 					console.log("hi!!!!");
 					myLat = position.coords.latitude;
