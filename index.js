@@ -197,6 +197,36 @@ app.post('/accept', function(req, res) {
 	});
 }); 
 
+
+app.post('/acceptCreator', function(req, res) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+
+	mongo.Db.connect(mongoURI, function (err, db) {
+		db.collection ("users", function (er, collection) {
+			var name = req.body.user;
+			var user = collection.find({user: name}).toArray(function (err, r){
+				var shouldInsert = true;
+				var events = new Array();
+				if (r[0].accepted != null){
+					events = r[0].accepted
+				}
+				for (j = 0; j < events.length; j++) {
+					if (r[0].accepted[j] == req.body.eventID) {
+						shouldInsert = false;
+					}
+				}
+				if (shouldInsert) {
+					events.push(req.body.eventID);
+				}
+			});
+		});
+	});
+});
+
+
+})
+
 app.get('/currentInvited', function (req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "*");
