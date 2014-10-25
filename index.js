@@ -6,10 +6,12 @@ var mongoose = require('mongoose');
 var json = require('json');
 var express = require('express')
 var app = express();
-
+var parser = require('body-parser');
 app.set('port', (process.env.PORT || 5000))
 
 app.use(express.static(__dirname + '/public'))
+app.use(parser.urlencoded());
+app.user(parser.json());
 
 
 var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/heroku_app30983226';
