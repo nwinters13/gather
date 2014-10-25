@@ -59,7 +59,7 @@
 	background-color: #000000;
 	position:absolute;
 	margin-left:30%;
-	margin-top:5%;
+	margin-top:4%;
 }
 
 .list-group-item {
@@ -67,6 +67,36 @@
 }
 
 
+#events .scroll {
+	overflow-y:scroll;
+	width:100%;
+	max-height:300px;
+
+}
+
+#invites .scroll {
+	overflow-y:scroll;
+	width:100%;
+	max-height:300px;
+
+}
+
+#events h3 {
+	text-align:left;
+	font-family:"Raleway";
+}
+
+#invites h3 {
+	text-align:left;
+	font-family:"Raleway";
+
+}
+
+
+ #add-friends .btn {
+	margin-top:10px;
+	margin-bottom:;
+	}
 
 
 
