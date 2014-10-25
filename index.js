@@ -290,7 +290,7 @@ app.post('/acceptEvent', function (req, res) {
 					accepted = eventList[0].accepted
 				}
 				accepted.push(creator);
-				collection.update({"gathering": eventID, "accepted": accepted}, function (q, z){});
+				collection.update({"gathering": eventID}, {"gathering": eventID, "accepted": accepted}, function (q, z){});
 				res.send(200);	
 			}
 			});
