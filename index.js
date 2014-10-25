@@ -202,6 +202,7 @@ app.post('/viewingEvent', function (req, res) {
 					}
 				}
 				collection.update({"user": name}, {"user": name, "invited": r[0].invited, "accepted": r[0].accepted, "currentlyViewing": r[0].currentlyViewing}, function(e, q) {});
+				res.send(200);
 			});
 		});
 	});
