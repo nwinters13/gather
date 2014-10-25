@@ -82,7 +82,7 @@ app.post('/invitePerson', function(req, res) {
 					 					needToAdd = false
 					 				}
 					 			}
-								if (needToAdd) 
+								if (needToAdd) {
 					 				invites.push(eventID);
 					 			}
 					 		}
