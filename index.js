@@ -117,7 +117,6 @@ app.post('/login', function(req, res) {
 			var user = collection.find({user: name}).toArray(function (err, r){
 				if (r.length == 0) {
 				 	collection.insert({"user": name}, function (err, rz){
-				 		res.send(200);
 				 	});
 				} 
 				res.send(200);	
