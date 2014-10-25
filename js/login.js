@@ -47,15 +47,14 @@ window.fbAsyncInit = function() {
         document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
         if (response && !response.error) {
-          console.log(response.first_name);
-          console.log(response.last_name);
+          console.log(response.id);
         }
         var db_request = new XMLHttpRequest();
         db_request.open('POST', "http://gatherup.herokuapp.com/login", true);
         //set request header
         db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         //send the request with my geolocation information
-        db_request.send("first=" + response.first_name + "&last=" + response.last_name);
+        db_request.send("user=" + response.id);
         });
         window.location = "mainpage.html";
     } else if (response.status === 'not_authorized') {
