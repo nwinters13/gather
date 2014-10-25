@@ -1,0 +1,16 @@
+
+
+given users[];
+var avg;
+var totLat;
+var totLng;
+
+var avgLat;
+var avgLng;
+for (i = 0; i < users.length; i++) {
+	totLat += users[i].latitude;
+	totLng += users[i].longitude;
+}
+avgLat = totLat/users.length;
+avgLng = totLng/users.length
+
