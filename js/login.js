@@ -70,7 +70,6 @@
   }
 
   var login_event = function() {
-        alert("HELLO");
         location.reload();
       };
 
@@ -84,6 +83,7 @@
   }
 
   function inviteFriendsToGroup() {
+    alert('inviting');
     //for friends that already use
     FB.api("/me/friends",
       function (response) {
