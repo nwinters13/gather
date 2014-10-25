@@ -55,7 +55,7 @@ app.post('/submit.json', function(req, res) {
 	 		collection.insert({"user": user});	
 	 		res.send(req.body.user);
 	 	});
-	 })
+	 });
 	res.send(200);
 	});
 
