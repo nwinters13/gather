@@ -18,9 +18,11 @@ mongoose.connect(lobbyURI);
 var lobbyDB = mongoose.connection;
 //var lobbyDB = mongo.db(lobbyURI);
 
+
+var newGoose = require('mongoose');
 var userURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/users';
-mongoose.connect(userURI);
-var userDB = mongoose.connection;
+newGoose.connect(userURI);
+var userDB = newGoose.connection;
 // var userDB = mongo.Db.connect(userURI, function(err, dbConn) {
 // 	userDB = dbConn;
 // });
@@ -48,7 +50,7 @@ app.post('/submit.json', function(req, res) {
 		db.collection("lobbies", function(er, collection) {
 			var user = (req.body.user);
 			collection.insert({"user": user});	
-			//res.send(200);
+			res.send(200);
 		})
 	res.send(200);
 	});
