@@ -80,7 +80,7 @@
           console.log(response.id);
         }
          var db_request = new XMLHttpRequest();
-        db_request.open('POST', "gatherup.herokuapp.com/login", true);
+        db_request.open('POST', "http://gatherup.herokuapp.com/login", true);
         //set request header
         db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         //send the request with my geolocation information
