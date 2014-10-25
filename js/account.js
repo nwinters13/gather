@@ -41,14 +41,11 @@ function sendRequest() {
 	console.log(form);
 	var myLat;
 	var myLng;
-console.log('hi');
 		if (navigator.geolocation) { 
 				navigator.geolocation.getCurrentPosition(function(position) {
 					console.log("hi!!!!");
 					myLat = position.coords.latitude;
 					myLng = position.coords.longitude;
-					console.log("mylat" + myLat);
-					console.log("mylng" + myLng);
 					sendPOST(myLat, myLng, id, form);
 
 				});
@@ -63,7 +60,7 @@ function sendPOST(myLat, myLng, id, form) {
 	request.send("eventID=" + form + "&user=" + id + "&lat=" + myLat + "&lng=" + myLng);
 	var myEvents = document.getElementById("events").getElementsByClassName("list-group-item");
 	if(myEvents.length == 1) {
-		myEvents[0] = form;
+		myEvents[0].innerHTML = form;
 	}
 	else {
 		document.getElementById("events").getElementsByClassName("list-group").innerHTML += "<li class='list-group-item'>" + form + "</li>";
