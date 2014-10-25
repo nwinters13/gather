@@ -2,6 +2,7 @@ var http = require('http');
 var path = require('path');
 
 var mongo = require('mongodb');
+var mongoose = require('mongoose');
 var json = require('json');
 var express = require('express')
 var app = express();
@@ -13,8 +14,9 @@ app.use(express.static(__dirname + '/public'))
 
 
 var lobbyURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/lobbies';
-
-var lobbyDB = mongo.db(lobbyURI);
+mongoose.connect('mongodb://http://gatherup.herokuapp.com/lobbies');
+var lobbyDB = mongoose.connection;
+//var lobbyDB = mongo.db(lobbyURI);
 
 // var userURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/users';
 // var userDB = mongo.Db.connect(userURI, function(err, dbConn) {
