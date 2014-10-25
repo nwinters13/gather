@@ -36,10 +36,14 @@ console.log('hi');
 					console.log("hi!!!!");
 					myLat = position.coords.latitude;
 					myLng = position.coords.longitude;
+					sendPOST(myLat, myLng, id, form);
+
 				});
 				
 		}
-	function sendPOST() {
+		
+}
+function sendPOST(myLat, myLng, id, eventID) {
 	request.open('POST', 'http://gatherup.herokuapp.com/createEvent', true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send("eventID=" + form + "&user=" + id);
@@ -51,8 +55,6 @@ console.log('hi');
 		document.getElementById("events").getElementsByClassName("list-group").innerHTML += "<li class='list-group-item'>" + form + "</li>";
 	}
 
-	}
-	sendPOST();
-
 }
+
 
