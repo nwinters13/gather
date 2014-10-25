@@ -37,9 +37,10 @@ function callback(results, status)
 			console.log(results[i]);
 			createMarker(results[i]);
 			console.log("created an marker");
-
+			alert(i);
 		}
 	}
+	alert('calling load data');
 	loadData();
 }
 function createMarker(place)
