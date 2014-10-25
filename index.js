@@ -21,7 +21,7 @@ var lobbyDB = mongoose.connection;
 
  var newGoose = require('mongoose');
  var userURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/users';
-// newGoose.connect(userURI);
+ newGoose.connect(userURI);
 // var userDB = newGoose.connection;
 // var userDB = mongo.Db.connect(userURI, function(err, dbConn) {
 // 	userDB = dbConn;
@@ -36,7 +36,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/index.html', function(req, res) {
-  res.send(lobbyURI);
+  res.send(userURI);
 });
 
 app.listen(app.get('port'), function() {
