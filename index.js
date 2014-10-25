@@ -69,8 +69,22 @@ app.post('/invitePerson', function(req, res) {
 					 			invites.push(eventID);
 					 		}
 					 		else {
+					 			var accepted = r[0].accepted;
 					 			invites = r[0].invited;
-					 			invites.push(eventID);
+					 			var needToAdd = true;
+					 			for (int j = 0; j < accepted.length; j++) {
+					 				if (accepted[j] == eventID) {
+					 					needToAdd = false;
+					 				}
+					 			}
+					 			for (int j = 0; j < invites.length; j++) {
+					 				if (invites[j] == eventID) {
+					 					needToAdd = false
+					 				}
+					 			}
+								if (needToAdd) 
+					 				invites.push(eventID);
+					 			}
 					 		}
 				  		 	collection.update({"user": name}, {"user": name, "invited": invites}, function(e, q) {});
 					 		res.send(202);
