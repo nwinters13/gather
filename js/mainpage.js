@@ -27,7 +27,6 @@ function statusChangeCallback(response) {
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
-    //FB.Event.subscribe('auth.login', login_event);
 
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
@@ -44,6 +43,7 @@ function statusChangeCallback(response) {
   }
 
 function inviteFriendsToGroup() {
+  console.log("in invite friends");
 //for friends that already use
 FB.api("/me/friends",
   function (response) {
