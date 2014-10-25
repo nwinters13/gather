@@ -1,0 +1,29 @@
+
+
+term = "bars";
+geolocation = 37.77493,-122.419415
+address = addresss near latitude and longitude;
+mode = <<
+
+if (mode = 'walking') {
+	
+}
+
+requestURL = "http://api.yelp.com/v2/search?term=" + term + "&location=" + address + "&cll=" + geolocation;
+
+
+http://api.yelp.com/v2/search?term=german+food&location=Hayes&cll=37.77493,-122.419415
+
+
+
+
+
+
+var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                        var studentList = JSON.parse(xhr.responseText);
+
+
+                        xhr.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
