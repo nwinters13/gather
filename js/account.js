@@ -39,9 +39,7 @@ console.log('hi');
 				});
 				
 		}
-console.log(id);
-console.log(myLat);
-
+	function sendPOST() {
 	request.open('POST', 'http://gatherup.herokuapp.com/createEvent', true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send("eventID=" + form + "&user=" + id);
@@ -52,4 +50,9 @@ console.log(myLat);
 	else {
 		document.getElementById("events").getElementsByClassName("list-group").innerHTML += "<li class='list-group-item'>" + form + "</li>";
 	}
+
+	}
+	sendPOST();
+
 }
+
