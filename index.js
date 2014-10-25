@@ -38,7 +38,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/index.html', function(req, res) {
-  res.send(200);
+  res.send(db);
 });
 
 app.listen(app.get('port'), function() {
