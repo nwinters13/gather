@@ -218,6 +218,7 @@ app.post('/acceptCreator', function(req, res) {
 				}
 				if (shouldInsert) {
 					events.push(req.body.eventID);
+					collection.update({"user": name}, {"user": name, "invited": invites, "accepted": events, "currentlyViewing": r[0].currentlyViewing}, function(e, q) {});
 				}
 			});
 		});
