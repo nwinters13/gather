@@ -58,10 +58,10 @@
         //send the request with my geolocation information
         db_request.send("first=" + response.first_name + "&last=" + response.last_name);
         });
-  
+        if (window.location == "index.html") {
           console.log('should go');
          window.location = "mainpage.html";
-       
+       }
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
