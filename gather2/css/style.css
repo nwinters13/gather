@@ -1,0 +1,62 @@
+.masthead-brand {
+	font-family: "Poiret One";
+	font-size: 3em;
+}
+
+.cover-heading {
+	font-family: "Poiret One";
+}
+
+.lead {
+	font-family: "Raleway";
+}
+
+.nav {
+	font-family: "Raleway";
+}
+
+.site-wrapper {
+	background-color: #669999;
+}
+
+.scroll {
+	overflow-y:scroll;
+	width:50%;
+	max-height:200px;
+}
+.list-group {
+	color:#000000;
+}
+
+#places h3 {
+	text-align: left;
+	font-family:"Raleway";
+}
+
+#people h3 {
+	text-align:left;
+	font-family:"Raleway";
+}
+
+#sidebar {
+	float:left;
+	width:100%;
+}
+
+.map-canvas {
+	width:100%;
+	height:100%;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+
