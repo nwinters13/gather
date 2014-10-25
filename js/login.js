@@ -39,7 +39,7 @@ window.fbAsyncInit = function() {
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
-    FB.Event.subscribe('auth.login', function(location.reload()));
+    FB.Event.subscribe('auth.login', function(){location.reload()});
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
         FB.api('/me', function(response) {
