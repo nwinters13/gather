@@ -320,3 +320,27 @@ app.post('/acceptEvent', function (req, res) {
 	});
 });
 
+
+app.get('/midpoint', function (req, res) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+
+	mongo.Db.connect(mongoURI, function (err, db) {
+		db.collection("lobbies", function (er, collection) {
+			var eventID = req.query.eventID
+			var eventObj = collection.find({lobbies: eventID}).toArray(function (err, r) {
+				var numUsers = r[0].accepted.length;
+				var avgLat = 0;
+				var avgLng = 0;
+				var LatLng = new Array();
+				for (j = 0; j < numUsers; j++) {
+					avgLat += r[j].lat;
+					avgLng += r[j].lng;
+				}
+				LatLng.push(avgLat/numUsers);
+				LatLng.push(avgLng/numUsers);
+				res.send(LatLng);
+			});
+		});
+	});
+});
