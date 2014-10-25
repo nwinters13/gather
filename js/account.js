@@ -40,8 +40,6 @@ console.log(myLat);
 		myEvents[0] = form;
 	}
 	else {
-		getElementById("events").getElementsByClassName("list-group").innerHTML += "<li class='list-group-item'>" + form + "</li>";
+		document.getElementById("events").getElementsByClassName("list-group").innerHTML += "<li class='list-group-item'>" + form + "</li>";
 	}
-
-
 }
