@@ -7,23 +7,25 @@ function initialize() {
     zoom: 8,
     center: new google.maps.LatLng(42.4055470, -71.1238240)
   };
-  map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);
-    setupMap();
+  if (!hasLoaded) {
+ 	 map = new google.maps.Map(document.getElementById('map-canvas'),
+    	  mapOptions);
+    	setupMap();
+    	hasLoaded = true;
+  }
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
 
 function loadScript() {
- if (!hasLoaded) {
+
   var script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = 'https://maps.googleapis.com/maps/api/js?sensor=true&libraries=places&' +
       'callback=initialize';
   document.body.appendChild(script);
   hasLoaded = true;
- }
 }
 
 window.onload = loadScript();
