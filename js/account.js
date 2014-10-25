@@ -36,6 +36,8 @@ console.log('hi');
 					console.log("hi!!!!");
 					myLat = position.coords.latitude;
 					myLng = position.coords.longitude;
+					console.log("mylat" + myLat);
+					console.log("mylng" + myLng);
 					sendPOST(myLat, myLng, id, form);
 
 				});
