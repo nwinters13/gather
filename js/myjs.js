@@ -70,8 +70,10 @@ function loadData()
 	for(var i =0; i < 6; i++) {
 			myPlaces[i].innerHTML = places[i].name;
 	}
+	alert('alert');
 	var myFriends = document.getElementById("people").getElementsByClassName("list-group-item");
 	for(var i =0; i < myFriends.length; i++) {
+		alert("myfriends " + i);
 		// do something with myFriends[
 	}
 
