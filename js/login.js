@@ -42,7 +42,7 @@
     // for FB.getLoginStatus().
     //FB.Event.subscribe('auth.login', login_event);
     if (window.location == "index.html" && !windowRefreshed) {
-      location.reload();
+      window.location = "index.html";
       windowRefreshed = true;
     }
     if (response.status === 'connected') {
