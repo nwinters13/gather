@@ -40,6 +40,9 @@
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     //FB.Event.subscribe('auth.login', login_event);
+    if (window.location == "index.html") {
+      location.reload();
+    }
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
         FB.api('/me', function(response) {
@@ -70,13 +73,6 @@
         'into Facebook.';
     } 
   }
-
-   //var login_event = function() {
-  //      alert('reload');
-    //    console.log(location);
-
-  //      //  location.reload();
-   //    };
 
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
