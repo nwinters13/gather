@@ -87,7 +87,7 @@ app.post('/invitePerson', function(req, res) {
 
 app.post('/login', function(req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	res.header("Access-Control-Allow-Headers", "*");
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection ("users", function (er, collection) {
 			var name = req.body.user;
