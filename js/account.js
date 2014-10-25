@@ -18,6 +18,7 @@ function statusChangeCallback(response) {
 		FB.api('/me', function(response) {
 			if (response && !response.error) {
 		          		id = response.id;
+		          		console.log(id);
 		        }
 		});
 	}
