@@ -328,7 +328,7 @@ app.get('/midpoint', function (req, res) {
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection("lobbies", function (er, collection) {
 			var eventID = req.query.eventID
-			var eventObj = collection.find({lobbies: eventID}).toArray(function (err, r) {
+			var eventObj = collection.find({gathering: eventID}).toArray(function (err, r) {
 				if (r.length == 0) {
 					res.send(400);
 				}
@@ -343,6 +343,21 @@ app.get('/midpoint', function (req, res) {
 				LatLng.push(avgLat/numUsers);
 				LatLng.push(avgLng/numUsers);
 				res.send(LatLng);
+			});
+		});
+	});
+});
+
+
+app.get('/acceptedEvent', function (req, res) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+
+	mongo.Db.connect(mongoURI, function (err, db) {
+		db.collection("lobbies", function (er, collection) {
+			var eventID = req.query.eventID;
+			var user = collection.find({gathering: eventID}).toArray(function (err, r) {
+				res.send(r[0].accepted);
 			});
 		});
 	});
