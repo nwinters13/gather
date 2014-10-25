@@ -63,9 +63,9 @@ app.post('/invitePerson', function(req, res) {
 							res.send(200);
 						});
 					} else {
-						var invites = r[0].invited;
+						var invites = r.invited;
 						invites.push(req.body.eventID);
-					 	collection.update({"user": r[0].user}, {"user": r[0].user, "invited": invites, "accepted": r[0].accepted});
+					 	collection.update({"user": r.user}, {"user": r.user, "invited": invites, "accepted": r.accepted});
 						res.send(202);
 					}
 				});
