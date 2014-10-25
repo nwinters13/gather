@@ -33,7 +33,7 @@ app.get('/index.html', function(req, res) {
 					info += "<p>" + array[i].user + "</p>";
 				}
 				info = "</body></html>";
-				res.send(info);
+				res.send(200);
 			});
 		});
 	});  
