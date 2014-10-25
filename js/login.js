@@ -70,6 +70,7 @@
   }
 
   var login_event = function() {
+        alert("HELLO");
         location.reload();
       };
 
