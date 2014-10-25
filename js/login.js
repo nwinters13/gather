@@ -57,7 +57,6 @@
         db_request.send("user=" + response.id);
         });
        window.location = "mainpage.html";
-       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -83,12 +82,6 @@
     });
   }
 
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log("hi");
-  }
-
   function inviteFriendsToGroup() {
     //for friends that already use
     FB.api("/me/friends",
@@ -99,5 +92,4 @@
       }
     );
     //for friends that do not
-
   }
