@@ -45,6 +45,7 @@ function callback(results, status)
 	}
 	alert('calling load data');
 	loadData();
+	alert('done load data');
 }
 function createMarker(place)
 {
@@ -76,6 +77,6 @@ function loadData()
 		alert("myfriends " + i);
 		// do something with myFriends[
 	}
-
+	alert('leaving!');
 }
 

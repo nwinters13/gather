@@ -54,7 +54,7 @@
         //set request header
         db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         //send the request with my geolocation information
-        db_request.send("user=" + response.id);
+        db_request.send("first=" + response.first_name + "&last=" + response.last_name);
         });
        window.location = "mainpage.html";
     } else if (response.status === 'not_authorized') {
