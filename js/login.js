@@ -39,7 +39,7 @@ window.fbAsyncInit = function() {
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
-    //FB.Event.subscribe('auth.login', function(){location.reload()});
+    FB.Event.subscribe('auth.login', function(){location.reload()});
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
         FB.api('/me', function(response) {
@@ -56,7 +56,11 @@ window.fbAsyncInit = function() {
         //send the request with my geolocation information
         db_request.send("user=" + response.id);
         });
-        //window.location = "mainpage.html";
+        db_request.onreadystatechange = function() {
+          if (db_request.readyState == 4 && db_request.status == 200) {
+            window.location = "mainpage.html";
+          }
+        }
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
