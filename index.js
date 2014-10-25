@@ -36,7 +36,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/index.html', function(req, res) {
-  res.send(userURI);
+  res.send(lobbyURI);
 });
 
 app.listen(app.get('port'), function() {
