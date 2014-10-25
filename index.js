@@ -113,3 +113,33 @@ app.post('/login', function(req, res) {
 		});
 	});
 }); 
+
+
+app.post('/decline', function(req, res) {
+	mongo.Db.connect(mongoURI, function (err, db) {
+		db.collection ("users", function (er, collection) {
+			var name = req.body.user;
+			var user = collection.find({user: name}).toArray(function (err, r){
+				if (r.length == 0) {
+				 	collection.insert({"user": name}, function (err, rz){
+				 		res.send(200);
+				 	});
+				} else {
+					var eventID = req.body.eventID;
+					if (eventID) {
+						var invites = new Array();
+						invites = r[0].invited;
+						for (j = 0; j < invites.length; j++) {
+							if (invites[j] == eventID) {
+								invites.splice(j, 1);
+							}
+						}
+						collection.update({"user": name}, {"user": name, "invited": invites}, function(e, q) {});
+						res.send(202);
+					}
+				}
+				res.send(200);	
+			});
+		});
+	});
+}); 
