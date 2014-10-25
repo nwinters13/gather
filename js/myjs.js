@@ -30,6 +30,7 @@ function setupMap()
 function callback(results, status)
 {
 	if (status == google.maps.places.PlacesServiceStatus.OK) {
+		alert("hi");
 		alert("Got places back!");
 		alert('phew');
 		places = results;
