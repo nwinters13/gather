@@ -250,7 +250,7 @@ app.get('/currentAccepted', function (req, res) {
 		db.collection("users", function (er, collection) {
 			var name = req.query.user;
 			var user = collection.find({user: name}).toArray(function (err, r) {
-				res.send(r[0].accepted);
+				request.status(r[0].accepted.end();
 			});
 		});
 	});
