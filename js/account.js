@@ -7,6 +7,13 @@
       version    : 'v2.1'
     });
 
+      FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+
+      };
+
+
 var form = document.getElementsByClassName("form-control");
 var button = document.getElementsByClassName("input-group-btn");
 button.onClick = sendRequest();
