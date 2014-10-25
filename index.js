@@ -329,6 +329,9 @@ app.get('/midpoint', function (req, res) {
 		db.collection("lobbies", function (er, collection) {
 			var eventID = req.query.eventID
 			var eventObj = collection.find({lobbies: eventID}).toArray(function (err, r) {
+				if (r.length == 0) {
+					res.send(400);
+				}
 				var numUsers = r[0].accepted.length;
 				var avgLat = 0;
 				var avgLng = 0;
