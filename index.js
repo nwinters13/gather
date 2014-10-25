@@ -34,9 +34,9 @@ app.get('/index.html', function(req, res) {
 	});  
 });
 
-// app.listen(app.get('port'), function() {
-//   console.log("Node app is running at localhost:" + app.get('port'))
-// });
+ app.listen(app.get('port'), function() {
+   console.log("Node app is running at localhost:" + app.get('port'))
+ });
 
 // app.post('/submit.json', function (req, res) {
 // 	 res.header("Access-Control-Allow-Origin", "*");
@@ -72,8 +72,6 @@ app.post('/invitePerson', function(req, res) {
 					 			invites = r[0].invited;
 					 			invites.push(eventID);
 					 		}
-					 		//res.send(invites);
-					 		//invites.push(req.body.eventID);
 				  		 	collection.update({"user": name}, {"user": name, "invited": invites}, function(e, q) {});
 					 		res.send(202);
 					 	}
