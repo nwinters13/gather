@@ -41,10 +41,7 @@
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     //FB.Event.subscribe('auth.login', login_event);
-    if (window.location == "index.html" && !windowRefreshed) {
-      window.location = "index.html";
-      windowRefreshed = true;
-    }
+
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
         FB.api('/me', function(response) {
@@ -81,6 +78,7 @@
   // code below.
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
+      console.log('done pressing login');
       statusChangeCallback(response);
     });
   }
