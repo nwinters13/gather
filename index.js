@@ -16,10 +16,10 @@ app.use(parser.json());
 
 var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/47950/heroku_app30983226';
 //mongoose.connect(mongoURI);
-//var db = mongoose.connection;
-var db = mongo.Db.connect(mongoURI, function (error, databaseConnection) {
-	db = databaseConnection;
-});
+var db = mongoose.createConnection(mongoURI);
+//var db = mongo.Db.connect(mongoURI, function (error, databaseConnection) {
+//	db = databaseConnection;
+//});
 
 
  //var newGoose = require('mongoose');
