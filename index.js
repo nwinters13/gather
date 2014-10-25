@@ -341,7 +341,7 @@ app.get('/midpoint', function (req, res) {
 					avgLat += parseFloat(r[0].lats[j]);
 					avgLng += parseFloat(r[0].lngs[j]);
 				}
-				res.send(200);
+				//res.send(200);
 				avgLat = avgLat/numUsers;
 				
 				avgLng = avgLng/numUsers;
