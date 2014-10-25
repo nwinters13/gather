@@ -69,7 +69,7 @@
     } 
   }
 
-   function login_event() {
+   var login_event = function() {
   //      alert('reload');
         console.log(location);
 
