@@ -60,6 +60,11 @@ function sendPOST(myLat, myLng, id, form) {
 	request.send("eventID=" + form + "&user=" + id + "&lat=" + myLat + "&lng=" + myLng);
 	var myEvents = document.getElementById("events").getElementsByClassName("list-group-item");
 	request = new XMLHttpRequest();
+	request.open('POST', 'http://gatherup.herokuapp.com/accept', true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send("eventID=" + form + "&user=" + id);
+
+	request = new XMLHttpRequest();
 	request.open('GET', 'http://gatherup.herokuapp.com/currentAccepted?user='+id, true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send(null);
