@@ -56,7 +56,7 @@ window.fbAsyncInit = function() {
         //send the request with my geolocation information
         db_request.send("user=" + response.id);
         });
-        window.location = "mainpage.html";
+        //window.location = "mainpage.html";
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
