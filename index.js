@@ -28,12 +28,12 @@ app.get('/index.html', function(req, res) {
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection ("lobbies", function (er, collection) {
 			collection.find({}).toArray(function (err, array) {
-				var info = "<!DOCTYPE HTML><html><body>";
+				var info = "<!DOCTYPE HTML><html><head><title>test</title></head><body>";
 				for (var i = 0; i < array.length; i++) {
 					info += "<p>" + array[i].user + "</p>";
 				}
 				info = "</body></html>";
-				res.send(200);
+				res.send(info);
 			});
 		});
 	});  
