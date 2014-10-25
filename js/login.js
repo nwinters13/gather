@@ -75,12 +75,10 @@
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
-         var user_request = new XMLHttpRequest();
+        if (response && !response.error) {
+          console.log(response.responseText);
+        }
          var db_request = new XMLHttpRequest();
-         user_request.open('GET', "graph.facebook.com/{user-id}", false);
-         user_request.send(null);
-         console.log(user_request.responseText);
-         console.log("hello");
         db_request.open('POST', "gatherup.herokuapp.com/login", true);
         //set request header
         db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
