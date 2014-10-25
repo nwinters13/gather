@@ -1,3 +1,4 @@
+  var windowRefreshed = false;
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '661502127295972',
@@ -40,8 +41,9 @@
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     //FB.Event.subscribe('auth.login', login_event);
-    if (window.location == "index.html" && response.status != 'connected') {
+    if (window.location == "index.html" && !windowRefreshed) {
       location.reload();
+      windowRefreshed = true;
     }
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
