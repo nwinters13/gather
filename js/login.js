@@ -77,13 +77,13 @@
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
         if (response && !response.error) {
-          console.log(response.responseText);
+          console.log(response.id);
         }
          var db_request = new XMLHttpRequest();
         db_request.open('POST', "gatherup.herokuapp.com/login", true);
         //set request header
         db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         //send the request with my geolocation information
-        db_request.send("user=" + user_request.responseText);
+        //db_request.send("user=" + user_request.responseText);
     });
   }
