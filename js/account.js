@@ -19,7 +19,6 @@ function sendRequest() {
 	form = form.value;
 	var button = document.getElementsByClassName("input-group-btn");
 	console.log(form);
-	var request = new XMLHttpRequest();
 	var id;
 	var myLat;
 	var myLng;
@@ -46,6 +45,7 @@ console.log('hi');
 		
 }
 function sendPOST(myLat, myLng, id, eventID) {
+	var request = new XMLHttpRequest();
 	request.open('POST', 'http://gatherup.herokuapp.com/createEvent', true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send("eventID=" + form + "&user=" + id);
