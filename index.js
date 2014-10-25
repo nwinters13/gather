@@ -46,6 +46,7 @@ app.post('/submit.json', function(req, res) {
 	 res.header("Access-Control-Allow-Headers", "*");
 	 db.collection("lobbies", function(er, collection) {
 	 		var user = (req.body.user);
+	 		console.log(user);
 	 		collection.insert({"user": user});	
 	 		res.send(200);
 	 	});
