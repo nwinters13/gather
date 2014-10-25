@@ -66,7 +66,7 @@ function sendPOST(myLat, myLng, id, form) {
 
 	request = new XMLHttpRequest();
 	request.open('GET', 'http://gatherup.herokuapp.com/currentAccepted?user='+id, true);
-	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	//request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send(null);
 	var myGatherings = new Array();
 	myGatherings = request.responseText;
