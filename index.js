@@ -271,3 +271,30 @@ app.post('/createEvent', function (req, res) {
 		});
 	});
 });
+
+app.post('/acceptEvent', function (req, res) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+
+	mongo.Db.connect(mongoURI, function (err, db) {
+		db.collection("lobbies", function (er, collection) {
+			var eventObj = collection.find({gathering: req.body.eventID}).toArray(function (err, eventList){
+			if (eventList.length == 0) {
+				res.send(400);
+			}
+			else {
+				var eventID = req.body.eventID;
+				var creator = req.body.user;
+				var accepted = new Array();
+				if (eventList[0].accepted != null) {
+					accepted = eventList[0].accepted
+				}
+				accepted.push(creator);
+				collection.update({"gathering": eventID, "accepted": accepted}, function (q, z){});
+				res.send(200);	
+			}
+			});
+		});
+	});
+});
+
