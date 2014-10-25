@@ -35,10 +35,16 @@ var db = mongoose.createConnection(mongoURI);
 
 
 app.get('/', function (request, response) {
+		res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+
   response.send('Hello World!')
 });
 
 app.get('/index.html', function(req, res) {
+		res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection ("lobbies", function (er, collection) {
 			collection.find({}).sort().toArray(function (err, array) {
@@ -54,6 +60,9 @@ app.get('/index.html', function(req, res) {
 
 
 app.post('/invitePerson', function(req, res) {
+		res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection ("users", function (er, collection) {
 			var name = req.body.user;
@@ -119,6 +128,9 @@ app.post('/login', function(req, res) {
 
 
 app.post('/decline', function(req, res) {
+res.header("Access-Control-Allow-Origin", "*");
+res.header("Access-Control-Allow-Headers", "*");
+
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection ("users", function (er, collection) {
 			var name = req.body.user;
@@ -148,6 +160,9 @@ app.post('/decline', function(req, res) {
 
 
 app.post('/accept', function(req, res) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection ("users", function (er, collection) {
 			var name = req.body.user;
@@ -184,6 +199,9 @@ app.post('/accept', function(req, res) {
 }); 
 
 app.get('/currentInvited', function (req, res) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection("users", function (er, collection) {
 			var name = req.query.user;
@@ -195,6 +213,9 @@ app.get('/currentInvited', function (req, res) {
 });
 
 app.get('/currentAccepted', function (req, res) {
+		res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection("users", function (er, collection) {
 			var name = req.query.user;
@@ -206,6 +227,9 @@ app.get('/currentAccepted', function (req, res) {
 });
 
 app.post('/viewingEvent', function (req, res) {
+		res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection("users", function (er, collection) {
 			var name = req.body.user;
@@ -226,6 +250,9 @@ app.post('/viewingEvent', function (req, res) {
 
 
 app.post('/createEvent', function (req, res) {
+		res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "*");
+
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection("lobbies", function (er, collection) {
 			var eventObj = collection.find({gathering: req.body.eventID}).toArray(function (err, eventList){
@@ -233,12 +260,12 @@ app.post('/createEvent', function (req, res) {
 				res.send(400);
 			}
 			else {
-				var eventID = req.body.eventID;
-				var creator = req.body.user;
-				var accepted = new Array();
-				accepted.push(creator);
-				collection.insert({"gathering": eventID, "accepted": accepted});
-				res.send(200);	
+				// var eventID = req.body.eventID;
+				// var creator = req.body.user;
+				// var accepted = new Array();
+				// accepted.push(creator);
+				// collection.insert({"gathering": eventID, "accepted": accepted});
+				 res.send(200);	
 			}
 			});
 		});
