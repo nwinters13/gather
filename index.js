@@ -336,11 +336,12 @@ app.get('/midpoint', function (req, res) {
 				var avgLat = 0;
 				var avgLng = 0;
 				var LatLng = new Array();
-				res.send(200);
+
 				for (j = 0; j < numUsers; j++) {
 					avgLat += r[j].lat;
 					avgLng += r[j].lng;
 				}
+				res.send(200);
 				LatLng.push(avgLat/numUsers);
 				LatLng.push(avgLng/numUsers);
 				res.send(LatLng);
