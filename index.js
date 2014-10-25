@@ -75,7 +75,7 @@ app.post('/invitePerson', function(req, res) {
 					 		}
 					 		//res.send(invites);
 					 		//invites.push(req.body.eventID);
-				  		 	collection.update({"user": name}, {"user": name, "invited": invites});
+				  		 	collection.update({"user": name}, {"user": name, "invited": invites}, function(e, q) {});
 					 		res.send(202);
 					 	}
 					 }
