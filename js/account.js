@@ -24,6 +24,7 @@ function statusChangeCallback(response) {
 
 
 function sendRequest() {
+	console.log(id);
 	var form = document.getElementById("groupID");
 	form = form.value;
 	var button = document.getElementsByClassName("input-group-btn");
