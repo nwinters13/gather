@@ -44,7 +44,7 @@ console.log('hi');
 		}
 		
 }
-function sendPOST(myLat, myLng, id, eventID) {
+function sendPOST(myLat, myLng, id, form) {
 	var request = new XMLHttpRequest();
 	request.open('POST', 'http://gatherup.herokuapp.com/createEvent', true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
