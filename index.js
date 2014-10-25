@@ -14,11 +14,15 @@ app.use(parser.urlencoded());
 app.use(parser.json());
 
 
-var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/heroku_app30983226';
+var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/47950/heroku_app30983226';
 //mongoose.connect(mongoURI);
 //var db = mongoose.connection;
 var db = mongo.Db.connect(mongoURI, function (error, databaseConnection) {
 	db = databaseConnection;
+});
+
+var lobbies = db.collection("lobbies", function(er, collection) {
+	lobbies = collection;
 });
 
  //var newGoose = require('mongoose');
