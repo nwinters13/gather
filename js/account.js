@@ -59,11 +59,19 @@ function sendPOST(myLat, myLng, id, form) {
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send("eventID=" + form + "&user=" + id + "&lat=" + myLat + "&lng=" + myLng);
 	var myEvents = document.getElementById("events").getElementsByClassName("list-group-item");
-	if(myEvents.length == 1) {
+	request = new XMLHTTPRequest();
+	request.open('GET', 'http://gatherup.herokuapp.com/currentAccepted?user='+id, true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send(null);
+	var myGatherings = new Array();
+	myGatherings = request.responseText;
+	if(myGatherings.length == 1) {
 		myEvents[0].innerHTML = form;
 	}
 	else {
-		document.getElementById("events").getElementsByClassName("list-group").innerHTML += "<li class='list-group-item'>" + form + "</li>";
+		for(var i =0; i < myGatherings.length; i++) {
+			document.getElementById("events").getElementsByClassName("list-group").innerHTML += "<li class='list-group-item'>" + form + "</li>";
+		}
 	}
 
 }
