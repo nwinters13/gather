@@ -49,5 +49,23 @@ app.post('/submit.json', function (req, res) {
 	 	});
 	 });
 	res.send(200);
-	});
+});
 
+
+app.post('/invitePerson', function(req, res) {
+	mongo.Db.connect(mongoURI, function (err, db) {
+		db.collection ("users", function (er, collection) {
+			collection.find({}).sort().toArray(function (err, array) {			
+				var name = req.body.ID;
+				var user = collection.find({user: ID});
+				if (!user) {
+					collection.insert({"user": name}, function (err, r){});
+				} else {
+					var invites = user.invited;
+					invites.push(req.body.eventID);
+					collection.update({"user": name}, {"user": name, "invited": invites, "accepted": user.accepted});
+				}
+			});
+		});
+	});  
+});
