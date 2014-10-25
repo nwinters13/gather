@@ -27,7 +27,7 @@ app.get('/', function (request, response) {
 app.get('/index.html', function(req, res) {
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection ("lobbies", function (er, collection) {
-			collection.find({}).toArray(function (err, array) {
+			collection.find({}).sort().toArray(function (err, array) {
 				var info = "<!DOCTYPE HTML><html><head><title>test</title></head><body>";
 				res.send(array.length);
 				for (var i = 0; i < array.length; i++) {
