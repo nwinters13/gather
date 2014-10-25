@@ -69,12 +69,12 @@
     } 
   }
 
-  // function login_event() {
+   function login_event() {
   //      alert('reload');
-  //      console.log(location);
+        console.log(location);
 
   //      //  location.reload();
-  //      };
+       };
 
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
