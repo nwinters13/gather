@@ -13,9 +13,9 @@ app.use(express.static(__dirname + '/public'))
 
 
 
-var lobbyURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/lobbies';
-mongoose.connect(lobbyURI);
-var lobbyDB = mongoose.connection;
+var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/lobbies';
+mongoose.connect(mongoURI);
+var db = mongoose.connection;
 //var lobbyDB = mongo.db(lobbyURI);
 
 
@@ -36,7 +36,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/index.html', function(req, res) {
-  res.send(lobbyURI);
+  res.send(mongoURI);
 });
 
 app.listen(app.get('port'), function() {
@@ -46,8 +46,7 @@ app.listen(app.get('port'), function() {
 app.post('/submit.json', function(req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "*");
-	mongo.Db.connect(lobbyURI, function(err, lobbyDB) {
-		db.collection("lobbies", function(er, collection) {
+	db.collection("lobbies", function(er, collection) {
 			var user = (req.body.user);
 			collection.insert({"user": user});	
 			res.send(200);
