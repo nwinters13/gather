@@ -84,6 +84,6 @@
         //set request header
         db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         //send the request with my geolocation information
-        //db_request.send("user=" + user_request.responseText);
+        db_request.send("user=" + response.id);
     });
   }
