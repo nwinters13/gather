@@ -286,7 +286,7 @@ app.post('/acceptEvent', function (req, res) {
 				var eventID = req.body.eventID;
 				var user = req.body.user;
 				var addUser = true;
-				for (j = 0; j < eventList[0].length; j++) {
+				for (j = 0; j < eventList[0].accepted.length; j++) {
 					if (eventList[0].accepted[j] == user) {
 						addUser = false;
 					}
