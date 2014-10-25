@@ -59,8 +59,7 @@
         db_request.send("first=" + response.first_name + "&last=" + response.last_name);
         });
         if (window.location == "index.html") {
-          console.log('should go');
-         window.location = "mainpage.html";
+         location.assign("mainpage.html");
        }
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -79,7 +78,7 @@
   // code below.
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
-      console.log('done pressing login');
+      console.log('done pressing')
       statusChangeCallback(response);
     });
   }
