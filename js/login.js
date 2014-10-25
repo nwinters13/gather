@@ -41,7 +41,6 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      location.reload();
        window.location = "mainpage.html";
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
