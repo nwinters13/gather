@@ -59,7 +59,6 @@
        window.location = "mainpage.html";
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
-      window.location = "index.html";
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this app.';
     } else {
