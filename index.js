@@ -72,7 +72,7 @@ app.post('/invitePerson', function(req, res) {
 					 		if (!invites) {
 					 			invites.push(eventID);
 					 		}
-					 		res.send(invites);
+					 		//res.send(invites);
 					 		//invites.push(req.body.eventID);
 				  		// 	collection.update({"user": r[0].user}, {"user": r[0].user, "invited": invites, "accepted": r[0].accepted});
 					 		res.send(202);
