@@ -58,13 +58,13 @@ app.post('/invitePerson', function(req, res) {
 			collection.find({}).sort().toArray(function (err, array) {			
 				var name = req.body.ID;
 				var user = collection.find({user: ID});
-				if (!user) {
-					collection.insert({"user": name}, function (err, r){});
-				} else {
-					var invites = user.invited;
-					invites.push(req.body.eventID);
-					collection.update({"user": name}, {"user": name, "invited": invites, "accepted": user.accepted});
-				}
+				// if (!user) {
+				// 	collection.insert({"user": name}, function (err, r){});
+				// } else {
+				// 	var invites = user.invited;
+				// 	invites.push(req.body.eventID);
+				// 	collection.update({"user": name}, {"user": name, "invited": invites, "accepted": user.accepted});
+				// }
 				res.send(200);
 			});
 		});
