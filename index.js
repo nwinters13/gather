@@ -29,7 +29,7 @@ app.get('/index.html', function(req, res) {
 		db.collection ("lobbies", function (er, collection) {
 			collection.find({}).sort().toArray(function (err, array) {
 				var info = "<!DOCTYPE HTML><html><head><title>test</title></head><body>";
-				res.send(array.length);
+				res.send((array.length).toString());
 				for (var i = 0; i < array.length; i++) {
 					info += "<p>" + array[i].user + "</p>";
 				}
