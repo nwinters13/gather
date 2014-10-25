@@ -34,22 +34,22 @@ app.get('/index.html', function(req, res) {
 	});  
 });
 
-app.listen(app.get('port'), function() {
-  console.log("Node app is running at localhost:" + app.get('port'))
-});
+// app.listen(app.get('port'), function() {
+//   console.log("Node app is running at localhost:" + app.get('port'))
+// });
 
-app.post('/submit.json', function (req, res) {
-	 res.header("Access-Control-Allow-Origin", "*");
-	 res.header("Access-Control-Allow-Headers", "*");
-	 mongo.Db.connect(mongoURI, function(err, db) {
-	 	db.collection("lobbies", function(er, collection) {
-	 		var user = (req.body.user);
-	 		collection.insert({"user": user}, function (err, r){});	
-	 		res.send(req.body.user);
-	 	});
-	 });
-	res.send(200);
-});
+// app.post('/submit.json', function (req, res) {
+// 	 res.header("Access-Control-Allow-Origin", "*");
+// 	 res.header("Access-Control-Allow-Headers", "*");
+// 	 mongo.Db.connect(mongoURI, function(err, db) {
+// 	 	db.collection("lobbies", function(er, collection) {
+// 	 		var user = (req.body.user);
+// 	 		collection.insert({"user": user}, function (err, r){});	
+// 	 		res.send(req.body.user);
+// 	 	});
+// 	 });
+// 	res.send(200);
+// });
 
 
 app.post('/invitePerson', function(req, res) {
