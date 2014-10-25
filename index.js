@@ -34,7 +34,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/index.html', function(req, res) {
-  res.send(mongoURI);
+  res.send(db);
 });
 
 app.listen(app.get('port'), function() {
