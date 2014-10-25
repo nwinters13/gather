@@ -40,7 +40,7 @@
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     //FB.Event.subscribe('auth.login', login_event);
-    if (window.location == "index.html") {
+    if (window.location == "index.html" && response.status != 'connected') {
       location.reload();
     }
     if (response.status === 'connected') {
