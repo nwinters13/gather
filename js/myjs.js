@@ -14,6 +14,16 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 
 
+function loadScript() {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://maps.googleapis.com/maps/api/js?sensor=true&libraries=places&' +
+      'callback=initialize';
+  document.body.appendChild(script);
+}
+
+window.onload = loadScript();
+
 function setupMap()
 {
 	var latlng = new google.maps.LatLng(42.4055470, -71.1238240);
