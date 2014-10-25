@@ -15,8 +15,8 @@ function sendRequest() {
 	var request = new XMLHttpRequest();
 	var id;
 	var myLat;
-	var my Lng;
-
+	var myLng;
+console.log('hi');
 	FB.api('/me', function(response) {
 		if (response && !response.error) {
 	          		id = response.id;
@@ -29,7 +29,8 @@ function sendRequest() {
 				});
 				
 		}
-
+console.log(id);
+console.log(myLat);
 
 	request.open('POST', 'http://gatherup.herokuapp.com/createEvent', true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
