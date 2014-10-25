@@ -240,6 +240,7 @@ app.post('/createEvent', function (req, res) {
 				collection.insert({"gathering": eventID, "accepted": accepted});
 				res.send(200);	
 			}
-		})
-	})
-})
+			});
+		});
+	});
+});
