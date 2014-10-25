@@ -69,7 +69,7 @@ app.post('/invitePerson', function(req, res) {
 						res.send(201);
 					}
 				});
-				res.send(200);
+				//res.send(200);
 			});
 		});
 	});  
