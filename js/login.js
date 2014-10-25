@@ -2,6 +2,8 @@
     FB.init({
       appId      : '661502127295972',
       xfbml      : true,
+      cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
       version    : 'v2.1'
     });
 
