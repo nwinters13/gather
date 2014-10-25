@@ -48,7 +48,6 @@ app.post('/submit.json', function(req, res) {
 	 		var user = (req.body.user);
 	 		console.log(user);
 	 		collection.insert({"user": user});	
-	 		res.send(200);
 	 	});
 	res.send(200);
 	});
