@@ -1,4 +1,3 @@
-  var mainpage = "../mainpage.html/"
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '661502127295972',
