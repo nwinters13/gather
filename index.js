@@ -50,6 +50,6 @@ app.post('/submit.json', function(req, res) {
 	 		collection.insert({"user": user});	
 	 		//res.send(200);
 	 	});
-	res.send(200);
+	res.send(req.body.user);
 	});
 
