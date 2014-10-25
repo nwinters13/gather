@@ -263,6 +263,8 @@ app.post('/createEvent', function (req, res) {
 				var eventID = req.body.eventID;
 				var creator = req.body.user;
 				var accepted = new Array();
+				var lats = new Array();
+				var lngs = new Array();
 				accepted.push(creator);
 				lats.push(req.body.lat);
 				lngs.push(req.body.lng);
