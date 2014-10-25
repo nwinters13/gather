@@ -42,13 +42,13 @@ app.listen(app.get('port'), function() {
 });
 
 app.post('/submit.json', function(req, res) {
-	// res.header("Access-Control-Allow-Origin", "*");
-	// res.header("Access-Control-Allow-Headers", "*");
-	// db.collection("lobbies", function(er, collection) {
-	// 		var user = (req.body.user);
-	// 		collection.insert({"user": user});	
-	// 		res.send(200);
-	// 	})
+	 res.header("Access-Control-Allow-Origin", "*");
+	 res.header("Access-Control-Allow-Headers", "*");
+	 db.collection("lobbies", function(er, collection) {
+	 		var user = (req.body.user);
+	 		collection.insert({"user": user});	
+	 		res.send(200);
+	 	});
 	res.send(200);
 	});
 
