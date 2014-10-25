@@ -21,9 +21,6 @@ var db = mongo.Db.connect(mongoURI, function (error, databaseConnection) {
 	db = databaseConnection;
 });
 
-var lobbies = db.collection("lobbies", function(er, collection) {
-	lobbies = collection;
-});
 
  //var newGoose = require('mongoose');
  //var userURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/users';
