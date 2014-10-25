@@ -24,11 +24,13 @@ function sendRequest() {
 	var myLat;
 	var myLng;
 console.log('hi');
-	FB.api('/me', function(response) {
-		if (response && !response.error) {
-	          		id = response.id;
-	        }
-	});
+	function statusChangeCallback(response) {
+		FB.api('/me', function(response) {
+			if (response && !response.error) {
+		          		id = response.id;
+		        }
+		});
+	}
 	if (navigator.geolocation) { 
 				navigator.geolocation.getCurrentPosition(function(position) {
 					myLat = position.coords.latitude;
