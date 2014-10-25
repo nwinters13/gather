@@ -59,8 +59,8 @@
         db_request.send("first=" + response.first_name + "&last=" + response.last_name);
         });
         if (window.location == "index.html") {
+          console.log('should go');
          window.location = "mainpage.html";
-         location.reload();
        }
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
