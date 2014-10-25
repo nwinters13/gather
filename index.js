@@ -329,7 +329,7 @@ app.get('/midpoint', function (req, res) {
 		db.collection("lobbies", function (er, collection) {
 			var eventID = req.query.eventID
 			var eventObj = collection.find({gathering: eventID}).toArray(function (err, r) {
-				if (r.length == 0 || r[0].accepted.length) {
+				if (r.length == 0 || r[0].accepted.length == 0) {
 					res.send(400);
 				}
 
