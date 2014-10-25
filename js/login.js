@@ -71,7 +71,9 @@
 
   function login_event() {
        alert('reload');
-         location.reload();
+       console.log(location);
+
+       //  location.reload();
        };
 
   // This function is called when someone finishes with the Login
