@@ -341,8 +341,8 @@ app.get('/midpoint', function (req, res) {
 					avgLat += r[0].lats[j];
 					avgLng += r[0].lngs[j];
 				}
-				LatLng.push(avgLat/(float)numUsers);
-				LatLng.push(avgLng/(float)numUsers);
+				LatLng.push(avgLat/numUsers);
+				LatLng.push(avgLng/numUsers);
 				res.send(LatLng);
 			});
 		});
