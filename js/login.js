@@ -39,7 +39,7 @@ window.fbAsyncInit = function() {
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
-    FB.Event.subscribe('auth.login', function(){location.reload()});
+    //FB.Event.subscribe('auth.login', function(){location.reload()});
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
         FB.api('/me', function(response) {
@@ -47,7 +47,8 @@ window.fbAsyncInit = function() {
         document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
         if (response && !response.error) {
-          console.log(response.id);
+          console.log(response.first_name);
+          console.log(response.last_name);
         }
         var db_request = new XMLHttpRequest();
         db_request.open('POST', "http://gatherup.herokuapp.com/login", true);
