@@ -16,7 +16,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 function setupMap()
 {
-	var latlng = new google.maps.LatLng(42.4055470, -71.1238240);
+	if (navigator.geolocation) { 
+				navigator.geolocation.getCurrentPosition(function(position) {
+					myLat = position.coords.latitude;
+					myLng = position.coords.longitude;
+				});
+				
+	}
+	var latlng = new google.maps.LatLng(myLat, myLng);
 	var request = {
 			location: latlng,
 			radius: '500',
@@ -65,6 +72,7 @@ function loadData()
 			myPlaces[i].innerHTML = places[i].name;
 	}
 	var myFriends = document.getElementById("people").getElementsByClassName("list-group-item");
+
 	for(var i =0; i < myFriends.length; i++) {
 		// do something with myFriends[
 	}
