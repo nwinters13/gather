@@ -63,7 +63,7 @@ app.post('/invitePerson', function(req, res) {
 					 		res.send(200);
 					 	});
 					 } else {
-					 	if (req.body.eventID) {
+					 	if (req.body.eventID.length > 0) {
 					 		var invites = r[0].invited;
 					 		res.send(invites);
 					 		//invites.push(req.body.eventID);
