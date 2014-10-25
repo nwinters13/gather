@@ -56,7 +56,6 @@ app.post('/invitePerson', function(req, res) {
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection ("users", function (er, collection) {
 			var name = req.body.user;
-
 			var user = collection.find({user: name}).toArray(function (err, r){
 					 if (r.length == 0) {
 					 	collection.insert({"user": name}, function (err, rz){
@@ -79,31 +78,23 @@ app.post('/invitePerson', function(req, res) {
 					 		res.send(202);
 					 	}
 					 }
-					 //res.send(204);
 			});
 		});
 	});
 });  
 
-
-// app.post('/invitePerson', function(req, res) {
-// 	mongo.Db.connect(mongoURI, function (err, db) {
-// 		db.collection ("users", function (er, collection) {
-// 			var name = req.body.user;
-// 			var user = collection.find({user: name}).toArray(function (err, r){
-// 				if (err) {
-// 					collection.insert({"user": name}, function (err, rz){
-// 						res.send(200);
-// 					});
-// 					res.send(200);
-// 				} else {
-// 					var invites = r.invited;
-// 					invites.push(req.body.eventID);
-// 				 	collection.update({"user": r.user}, {"user": r.user, "invited": invites, "accepted": r.accepted});
-// 					res.send(202);
-// 				}
-// 			});
-// 			res.send(204);
-// 		});
-// 	});
-// });  
+app.post('/login', function(req, res) {
+	mongo.Db.connect(mongoURI, function (err, db) {
+		db.collection ("users", function (er, collection) {
+			var name = req.body.user;
+			var user = collection.find({user: name}).toArray(function (err, r){
+				if (r.length == 0) {
+				 	collection.insert({"user": name}, function (err, rz){
+				 		res.send(200);
+				 	});
+				} 
+				res.send(200);	
+			});
+		});
+	});
+}); 
