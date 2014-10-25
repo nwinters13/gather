@@ -55,13 +55,12 @@ app.post('/submit.json', function (req, res) {
 app.post('/invitePerson', function(req, res) {
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection ("users", function (er, collection) {
-			collection.find({}).sort().toArray(function (err, array) {	
-				res.send(array[0]);		
+			collection.find({}).sort().toArray(function (err, array) {		
 				var name = req.body.user;
 				var user = collection.find({"user": name}).toArray(function (err, r){
 					if (err) {
 						collection.insert({"user": name}, function (err, r){
-						res.send(200);
+							res.send(200);
 						});
 					} else {
 						var invites = r[0].invited;
