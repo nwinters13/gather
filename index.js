@@ -14,9 +14,9 @@ app.use(express.static(__dirname + '/public'))
 
 var lobbyURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/lobbies';
 console.log(lobbyURI);
- //var lobbyDB = mongo.Db.connect(lobbyURI, function(error, databaseConnection) {
-  // lobbyDB = databaseConnection;
- //});
+var lobbyDB = mongo.Db.connect(lobbyURI, function(error, databaseConnection) {
+ lobbyDB = databaseConnection;
+});
 
 // var userURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/users';
 // var userDB = mongo.Db.connect(userURI, function(err, dbConn) {
@@ -32,7 +32,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/index.html', function(req, res) {
-  res.send(lobbyURI);
+  res.send(lobbyDB);
 });
 
 app.listen(app.get('port'), function() {
