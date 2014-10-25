@@ -66,6 +66,9 @@ app.post('/invitePerson', function(req, res) {
 					 	var eventID = req.body.eventID;
 					 	if (eventID) {
 					 		var invites = r[0].invited;
+					 		if (!invites) {
+					 			invites = eventID;
+					 		}
 					 		res.send(invites);
 					 		//invites.push(req.body.eventID);
 				  		// 	collection.update({"user": r[0].user}, {"user": r[0].user, "invited": invites, "accepted": r[0].accepted});
