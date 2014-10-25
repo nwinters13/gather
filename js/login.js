@@ -82,6 +82,7 @@
          user_request.onreadystatechange = function() {
           if (request.readyState == 4 && request.status == 200) {
             console.log(user_request.responseText);
+            console.log("hello");
             db_request.open('POST', "gatherup.herokuapp.com/login", true);
             //set request header
             db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
