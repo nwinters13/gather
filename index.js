@@ -11,7 +11,7 @@ app.set('port', (process.env.PORT || 5000))
 
 app.use(express.static(__dirname + '/public'))
 app.use(parser.urlencoded());
-app.user(parser.json());
+app.use(parser.json());
 
 
 var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/heroku_app30983226';
@@ -52,6 +52,6 @@ app.post('/submit.json', function(req, res) {
 	 		collection.insert({"user": user});	
 	 		//res.send(200);
 	 	});
-	res.send(req.body.user);
+	res.send(200);
 	});
 
