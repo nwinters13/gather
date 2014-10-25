@@ -52,7 +52,7 @@
       // they are logged into this app or not.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
-    }
+    } 
   }
 
   var login_event = function() {
@@ -77,13 +77,16 @@
         'Thanks for logging in, ' + response.name + '!';
          var user_request = new XMLHttpRequest();
          user_request.open('GET', "graph.facebook.com/{user-id}");
+         user_request.send();
+         user_request.onreadystatechange = function() {
+             console.log(user_request.responseText);
+         }
          var db_request = new XMLHttpRequest();
          var user = 
          db_request.open('POST', "gatherup.herokuapp.com/login", true);
           //set request header
           db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           //send the request with my geolocation information
-        db_request.send("user=" + user);
-
+        db_request.send("user=" + user_request.responseText);
     });
   }
