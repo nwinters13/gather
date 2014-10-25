@@ -59,6 +59,7 @@ app.post('/invitePerson', function(req, res) {
 
 			var user = collection.find({user: name}).toArray(function (err, r){
 					 if (err) {
+					 	res.send(200);
 					 	collection.insert({"user": name}, function (err, rz){
 					 		res.send(200);
 					 	});
@@ -68,7 +69,7 @@ app.post('/invitePerson', function(req, res) {
 				 // 		collection.update({"user": r[0].user}, {"user": r[0].user, "invited": invites, "accepted": r[0].accepted});
 					// 	res.send(202);
 					// }
-					res.send(200);
+					res.send(204);
 			});
 		});
 	});
