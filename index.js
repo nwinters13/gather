@@ -68,7 +68,7 @@ app.post('/invitePerson', function(req, res) {
 				 // 		collection.update({"user": r[0].user}, {"user": r[0].user, "invited": invites, "accepted": r[0].accepted});
 					// 	res.send(202);
 					// }
-					res.send(204);
+					res.send(200);
 			});
 		});
 	});
