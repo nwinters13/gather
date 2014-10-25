@@ -9,12 +9,14 @@
 
       FB.getLoginStatus(function(response) {
           statusChangeCallback(response);
+          console.log(response.id);
         });
 
       };
 var id;
 
 function statusChangeCallback(response) {
+		console.log("hey!");
 		FB.api('/me', function(response) {
 			if (response && !response.error) {
 		          		id = response.id;
