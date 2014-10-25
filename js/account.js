@@ -69,7 +69,7 @@ function sendPOST(myLat, myLng, id, form) {
 	//request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send(null);
 	//var myGatherings = new Array();
-	if (request.readyState == 4 && request.status == 200) {
+	if (request.readyState == 4) {
 			myGatherings = request.responseText;
 	console.log(myGatherings);
 	console.log(myGatherings.length);
