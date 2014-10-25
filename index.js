@@ -220,6 +220,7 @@ app.post('/acceptCreator', function(req, res) {
 					events.push(req.body.eventID);
 					collection.update({"user": name}, {"user": name, "invited": invites, "accepted": events, "currentlyViewing": r[0].currentlyViewing}, function(e, q) {});
 				}
+				res.send(200);
 			});
 		});
 	});
