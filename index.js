@@ -56,8 +56,9 @@ app.post('/invitePerson', function(req, res) {
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection ("users", function (er, collection) {
 			var name = req.body.user;
+
 			var user = collection.find({user: name});
-			res.send(200);
+
 				if (!user) {
 					collection.insert({"user": name}, function (err, rz){
 						res.send(200);
@@ -69,7 +70,6 @@ app.post('/invitePerson', function(req, res) {
 				 	collection.update({"user": user.user}, {"user": user.user, "invited": invites, "accepted": user.accepted});
 					res.send(202);
 				}
-			});
 			res.send(204);
 		});
 	});
