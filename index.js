@@ -57,7 +57,7 @@ app.post('/invitePerson', function(req, res) {
 		db.collection ("users", function (er, collection) {
 			collection.find({}).sort().toArray(function (err, array) {		
 				var name = req.body.user;
-				var user = collection.find({"user": name}).toArray(function (err, r){
+				var user = collection.find({user: name}).toArray(function (err, r){
 					if (err) {
 						collection.insert({"user": name}, function (err, r){
 							res.send(200);
