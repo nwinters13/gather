@@ -2,7 +2,7 @@ var http = require('http');
 var path = require('path');
 
 var mongo = require('mongodb');
-//var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var json = require('json');
 var express = require('express')
 var app = express();
@@ -12,10 +12,9 @@ app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 
 
-
-//var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/heroku_app30983226';
-//mongoose.connect(mongoURI);
-//var db = mongoose.connection;
+var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://http://gatherup.herokuapp.com/heroku_app30983226';
+mongoose.connect(mongoURI);
+var db = mongoose.connection;
 
 
  //var newGoose = require('mongoose');
@@ -52,4 +51,4 @@ app.post('/submit.json', function(req, res) {
 	// 	})
 	res.send(200);
 	});
-});
+
