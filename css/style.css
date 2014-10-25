@@ -43,7 +43,6 @@
 	font-family:"Raleway";
 }
 #people {
-	overflow-y:scroll;
 	max-height:30%;
 }
 
