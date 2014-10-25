@@ -180,12 +180,23 @@ app.post('/accept', function(req, res) {
 	});
 }); 
 
-app.get('/currentInvites', function (req, res) {
+app.get('/currentInvited', function (req, res) {
 	mongo.Db.connect(mongoURI, function (err, db) {
 		db.collection("users", function (er, collection) {
 			var name = req.query.user;
 			var user = collection.find({user: name}).toArray(function (err, r) {
 				res.send(r[0].invited);
+			});
+		});
+	});
+});
+
+app.get('/currentAccepted', function (req, res) {
+	mongo.Db.connect(mongoURI, function (err, db) {
+		db.collection("users", function (er, collection) {
+			var name = req.query.user;
+			var user = collection.find({user: name}).toArray(function (err, r) {
+				res.send(r[0].accepted);
 			});
 		});
 	});
