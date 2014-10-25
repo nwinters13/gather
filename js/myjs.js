@@ -31,6 +31,7 @@ function callback(results, status)
 {
 	if (status == google.maps.places.PlacesServiceStatus.OK) {
 		alert("Got places back!");
+		alert('phew');
 		places = results;
 		alert('lol');
 		console.log("testing status");
