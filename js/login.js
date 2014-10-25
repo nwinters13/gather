@@ -35,11 +35,11 @@
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log(response);
-    location.reload();
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
+    FB.Event.subscribe('auth.login', login_event);
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
        window.location = "mainpage.html";
@@ -54,6 +54,10 @@
         'into Facebook.';
     }
   }
+
+  var login_event = function() {
+        location.reload();
+      };
 
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
