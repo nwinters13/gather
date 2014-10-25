@@ -53,7 +53,11 @@ app.post('/submit.json', function(req, res) {
 	 mongo.Db.connect(mongoURI, function(err, db) {
 	 	db.collection("lobbies", function(er, collection) {
 	 		var user = (req.body.user);
+<<<<<<< HEAD
 	 		collection.insert({"user": user}, function(err, r){});	
+=======
+	 		collection.insert({"user": user}, function (err, r){});	
+>>>>>>> 77f23ab0fc30751f4c5c7014d95dee5992dab54f
 	 		res.send(req.body.user);
 	 	});
 	 });
