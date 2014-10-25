@@ -329,7 +329,7 @@ app.get('/midpoint', function (req, res) {
 		db.collection("lobbies", function (er, collection) {
 			var eventID = req.query.eventID
 			var eventObj = collection.find({gathering: eventID}).toArray(function (err, r) {
-				if (r.length == 0 || r.accepted.length) {
+				if (r.length == 0 || r[0].accepted.length) {
 					res.send(400);
 				}
 
@@ -339,8 +339,8 @@ app.get('/midpoint', function (req, res) {
 				var LatLng = new Array();
 				res.send(200);
 				for (j = 0; j < numUsers; j++) {
-					avgLat += r[j].lat;
-					avgLng += r[j].lng;
+					avgLat += r[0].lat[j];
+					avgLng += r[0].lng[j];
 				}
 				res.send(200);
 				LatLng.push(avgLat/numUsers);
