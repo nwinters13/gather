@@ -69,15 +69,18 @@ app.post('/invitePerson', function(req, res) {
 					 			invites.push(eventID);
 					 		}
 					 		else {
-					 			var accepted = r[0].accepted;
+					 			var accepted = new Array();
+					 			if (r[0].accepted != null) {
+					 				accepted = r[0].accepted;
+					 			}
 					 			invites = r[0].invited;
 					 			var needToAdd = true;
-					 			for (var j = 0; j < accepted.length; j++) {
+					 			for (j = 0; j < accepted.length; j++) {
 					 				if (accepted[j] == eventID) {
 					 					needToAdd = false;
 					 				}
 					 			}
-					 			for (var j = 0; j < invites.length; j++) {
+					 			for (j = 0; j < invites.length; j++) {
 					 				if (invites[j] == eventID) {
 					 					needToAdd = false
 					 				}
@@ -86,7 +89,7 @@ app.post('/invitePerson', function(req, res) {
 					 				invites.push(eventID);
 					 			}
 					 		}
-				  		 	collection.update({"user": name}, {"user": name, "invited": invites}, function(e, q) {});
+				  		 	collection.update({"user": name}, {"user": name, "invited": invites, "accepted": r[0].accepted}, function(e, q) {});
 					 		res.send(202);
 					 	}
 					 }
@@ -110,3 +113,91 @@ app.post('/login', function(req, res) {
 		});
 	});
 }); 
+
+
+app.post('/decline', function(req, res) {
+	mongo.Db.connect(mongoURI, function (err, db) {
+		db.collection ("users", function (er, collection) {
+			var name = req.body.user;
+			var user = collection.find({user: name}).toArray(function (err, r){
+				if (r.length == 0) {
+				 	collection.insert({"user": name}, function (err, rz){
+				 		res.send(200);
+				 	});
+				} else {
+					var eventID = req.body.eventID;
+					if (eventID) {
+						var invites = new Array();
+						invites = r[0].invited;
+						for (j = 0; j < invites.length; j++) {
+							if (invites[j] == eventID) {
+								invites.splice(j, 1);
+							}
+						}
+						collection.update({"user": name}, {"user": name, "invited": invites, "accepted": r[0].accepted}, function(e, q) {});
+						res.send(202);
+					}
+				}
+			});
+		});
+	});
+}); 
+
+
+app.post('/accept', function(req, res) {
+	mongo.Db.connect(mongoURI, function (err, db) {
+		db.collection ("users", function (er, collection) {
+			var name = req.body.user;
+			var user = collection.find({user: name}).toArray(function (err, r){
+				if (r.length == 0) {
+				 	collection.insert({"user": name}, function (err, rz){
+				 		res.send(200);
+				 	});
+				} else {
+					var eventID = req.body.eventID;
+					if (eventID) {
+						var currEvent;
+						var invites = new Array();
+						invites = r[0].invited;
+						for (j = 0; j < invites.length; j++) {
+							if (invites[j] == eventID) {
+								currEvent = invites.splice(j, 1);
+							}
+						}
+						var accepted = new Array();
+						if (r[0].accepted != null) {
+							accepted = r[0].accepted;
+						}
+						if (currEvent != null) {
+							accepted.push(currEvent[0]);
+							collection.update({"user": name}, {"user": name, "invited": invites, "accepted": accepted}, function(e, q) {});
+						}
+						res.send(202);
+					}
+				}
+			});
+		});
+	});
+}); 
+
+app.get('/currentInvited', function (req, res) {
+	mongo.Db.connect(mongoURI, function (err, db) {
+		db.collection("users", function (er, collection) {
+			var name = req.query.user;
+			var user = collection.find({user: name}).toArray(function (err, r) {
+				res.send(r[0].invited);
+			});
+		});
+	});
+});
+
+app.get('/currentAccepted', function (req, res) {
+	mongo.Db.connect(mongoURI, function (err, db) {
+		db.collection("users", function (er, collection) {
+			var name = req.query.user;
+			var user = collection.find({user: name}).toArray(function (err, r) {
+				res.send(r[0].accepted);
+			});
+		});
+	});
+});
