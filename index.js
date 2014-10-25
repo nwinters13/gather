@@ -227,7 +227,6 @@ app.post('/acceptCreator', function(req, res) {
 });
 
 
-})
 
 app.get('/currentInvited', function (req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
