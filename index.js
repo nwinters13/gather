@@ -52,11 +52,10 @@ app.post('/submit.json', function(req, res) {
 	 mongo.Db.connect(mongoURI, function(err, db) {
 	 	db.collection("lobbies", function(er, collection) {
 	 		var user = (req.body.user);
-	 		console.log(user);
 	 		collection.insert({"user": user});	
 	 		res.send(req.body.user);
 	 	});
 	 })
-	res.send(200);
+	//res.send(200);
 	});
 
