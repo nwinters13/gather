@@ -77,18 +77,14 @@
         'Thanks for logging in, ' + response.name + '!';
          var user_request = new XMLHttpRequest();
          var db_request = new XMLHttpRequest();
-         user_request.open('GET', "graph.facebook.com/{user-id}");
+         user_request.open('GET', "graph.facebook.com/{user-id}", false);
          user_request.send(null);
-         user_request.onreadystatechange = function() {
-          if (request.readyState == 4 && request.status == 200) {
-            console.log(user_request.responseText);
-            console.log("hello");
-            db_request.open('POST', "gatherup.herokuapp.com/login", true);
-            //set request header
-            db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            //send the request with my geolocation information
-            db_request.send("user=" + user_request.responseText);
-          }
-        }
+         console.log(user_request.responseText);
+         console.log("hello");
+        db_request.open('POST', "gatherup.herokuapp.com/login", true);
+        //set request header
+        db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //send the request with my geolocation information
+        db_request.send("user=" + user_request.responseText);
     });
   }
