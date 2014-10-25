@@ -65,9 +65,12 @@ app.post('/invitePerson', function(req, res) {
 					 } else {
 					 	var eventID = req.body.eventID;
 					 	if (eventID) {
-					 		var invites = r[0].invited;
+					 		var invites = [];
+					 		for (int i = 0; i < r[0].invited.length; i++) {
+					 			invites.push(r[0].invited[i]);
+					 		}
 					 		if (!invites) {
-					 			invites = eventID;
+					 			invites.push(eventID);
 					 		}
 					 		res.send(invites);
 					 		//invites.push(req.body.eventID);
