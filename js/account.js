@@ -69,7 +69,8 @@ function sendPOST(myLat, myLng, id, form) {
 	//request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send(null);
 	//var myGatherings = new Array();
-	myGatherings = request.responseText;
+	if (request.readyState == 4 && request.status == 200) {
+			myGatherings = request.responseText;
 	console.log(myGatherings);
 	console.log(myGatherings.length);
 	if(myGatherings.length == 1) {
@@ -80,6 +81,7 @@ function sendPOST(myLat, myLng, id, form) {
 			document.getElementById("events").getElementsByClassName("list-group").innerHTML += "<li class='list-group-item'>" + form + "</li>";
 		}
 	}
+}
 
 }
 
