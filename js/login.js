@@ -1,5 +1,4 @@
-  var windowRefreshed = false;
-  window.fbAsyncInit = function() {
+window.fbAsyncInit = function() {
     FB.init({
       appId      : '661502127295972',
       xfbml      : true,
@@ -40,8 +39,7 @@
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
-    //FB.Event.subscribe('auth.login', login_event);
-
+    FB.Event.subscribe('auth.login', function(location.reload()));
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
         FB.api('/me', function(response) {
@@ -58,9 +56,7 @@
         //send the request with my geolocation information
         db_request.send("first=" + response.first_name + "&last=" + response.last_name);
         });
-        if (window.location == "index.html") {
-         location.assign("mainpage.html");
-       }
+        window.location = "mainpage.html";
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -81,17 +77,4 @@
       console.log('done pressing')
       statusChangeCallback(response);
     });
-  }
-
-  function inviteFriendsToGroup() {
-    alert('inviting');
-    //for friends that already use
-    FB.api("/me/friends",
-      function (response) {
-        if (response && !response.error) {
-          var container = document.getElementById('myModal');
-        }
-      }
-    );
-    //for friends that do not
   }
