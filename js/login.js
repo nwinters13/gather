@@ -71,10 +71,19 @@
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+         var user_request = new XMLHttpRequest();
+         user_request.open('GET', "graph.facebook.com/{user-id}");
+         var db_request = new XMLHttpRequest();
+         var user = 
+         db_request.open('POST', "gatherup.herokuapp.com/login", true);
+          //set request header
+          db_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          //send the request with my geolocation information
+        db_request.send("user=" + user);
+
     });
   }
